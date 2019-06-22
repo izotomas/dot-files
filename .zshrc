@@ -36,9 +36,6 @@ ZSH_TMUX_AUTOSTART="true"
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
-# Set name of the theme to load.
-POWERLEVEL9K_CONTEXT_TEMPLATE=""
-
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
@@ -118,14 +115,6 @@ bindkey '^g' jump
 #############################################################
 #	FUNCTIONS
 #############################################################
-function zle-line-init zle-keymap-select {
-    VIM_NORM="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
-    VIM_INS="%{$fg_bold[green]%} [% INSERT]% %{$reset_color%}"
-    RPS1="${${KEYMAP/vicmd/$VIM_NORM}/(main|viins)/$VIM_INS }$EPS1"
-    zle reset-prompt
-}
-
-
 zle -N zle-line-init
 zle -N zle-keymap-select
 
@@ -154,41 +143,21 @@ function take() {
 ############################################################
 #       POWERLINE
 ############################################################
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context anaconda dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+POWERLEVEL9K_MODE=nerdfont-fontconfig
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator context anaconda dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vi_mode time)
+POWERLEVEL9K_CONTEXT_TEMPLATE="$(whoami)"
+POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='white'
+POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='green'
+POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='yellow'
+POWERLEVEL9K_TIME_FORMAT='%D{%H:%M}'
+POWERLEVEL9K_VCS_GIT_ICON=''
+POWERLEVEL9K_VCS_GIT_GITHUB_ICON=''
 
 # directory max path lenght
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
-
-# customization
-prompt_context() {
-  local current_state="DEFAULT"
-  typeset -AH context_states
-  context_states=(
-    "ROOT"      "yellow"
-    "DEFAULT"   "white"
-  )
-
-  local content=""
-
-  if [[ "$POWERLEVEL9K_ALWAYS_SHOW_CONTEXT" == true ]] || [[ "$(whoami)" != "$DEFAULT_USER" ]] || [[ -n "$SSH_CLIENT" || -n "$SSH_TTY" ]]; then
-
-      if [[ $(print -P "%#") == '#' ]]; then
-        current_state="ROOT"
-      fi
-
-      content="${POWERLEVEL9K_CONTEXT_TEMPLATE}"
-
-  elif [[ "$POWERLEVEL9K_ALWAYS_SHOW_USER" == true ]]; then
-      content="$(whoami)"
-  else
-      return
-  fi
-
-  "$1_prompt_segment" "${0}_${current_state}" "$2" "$DEFAULT_COLOR" "${context_states[$current_state]}" "${content}"
-}
 
 #############################################################
 #	TEST
