@@ -115,8 +115,6 @@ bindkey '^E' fzf-history-widget
 bindkey '\`' autosuggest-clear
 bindkey '^ ' autosuggest-accept
 bindkey '^g' jump
-bindkey '<' swap-window -t -1
-bindkey '>' swap-window -t +1
 #############################################################
 #	FUNCTIONS
 #############################################################
