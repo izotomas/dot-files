@@ -65,7 +65,7 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "uvaes/fzf-marks"
-zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
 zplug "robbyrussell/oh-my-zsh/plugins/docker"
 
 # oh-my-zsh library
@@ -140,6 +140,19 @@ function take() {
   cd $1
 }
 
+fkill() {
+    local pid
+    if [ "$UID" != "0" ]; then
+        pid=$(ps -f -u $UID | sed 1d | fzf-tmux -d 15 | awk '{print $2}')
+    else
+        pid=$(ps -ef | sed 1d | fzf-tmux-d 15 | awk '{print $2}')
+    fi
+
+    if [ "x$pid" != "x" ]
+    then
+        echo $pid | xargs kill -${1:-9}
+    fi
+}
 ############################################################
 #       POWERLINE
 ############################################################
