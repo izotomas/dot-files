@@ -1,0 +1,24 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = Tomas Izo
+	email = tomas@izo.sk
+[core]
+        editor = nano
+	excludesfile = /Users/tomasizo/.gitignore_global
+        pager = less
+        autocrlf = false
+[credential]
+        helper = osxkeychain
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/tomasizo/.stCommitMsg
+[http]
+	sslCAInfo = /Users/tomasizo/.git-certs/gitlab.pem
+	ssVerify = false
+	sslVerify = false
