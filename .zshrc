@@ -101,22 +101,30 @@ zplug load
 #############################################################
 #	KEY BINDINGS
 #############################################################
+# use vim bindings
 bindkey -v
-bindkey '^k' history-substring-search-up
-bindkey '^j' history-substring-search-down
-bindkey '^h' backward-kill-word
-bindkey '^r' history-incremental-search-backward
-bindkey '^p' fzf-file-widget
+
+#remove unused bindings
+bindkey -r "^F"
+bindkey -r "^@"
+bindkey -r "^D"
+bindkey -r "^Q"
+
+bindkey '^K' history-substring-search-up
+bindkey '^J' history-substring-search-down
+bindkey '^H' backward-kill-word
+bindkey '^R' history-incremental-search-backward
+bindkey '^P' fzf-file-widget
 bindkey '^O' fzf-cd-tmux-widget
 bindkey '^E' fzf-history-widget
 bindkey '\`' autosuggest-clear
 bindkey '^ ' autosuggest-accept
-bindkey '^g' jump
+bindkey '^G' jump
+bindkey '^F^G' fzf-git-aliases
 #############################################################
 #	FUNCTIONS
 #############################################################
-zle -N zle-line-init
-zle -N zle-keymap-select
+zle -N fzf-git-aliases
 
 fzf-cd-tmux-widget() {
 	local cmd="${FZF_ALT_C_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune     -o -type d -print 2> /dev/null | cut -b3-"}"
@@ -145,13 +153,17 @@ fkill() {
     if [ "$UID" != "0" ]; then
         pid=$(ps -f -u $UID | sed 1d | fzf-tmux -d 15 | awk '{print $2}')
     else
-        pid=$(ps -ef | sed 1d | fzf-tmux-d 15 | awk '{print $2}')
+        pid=$(ps -ef | sed 1d | fzf-tmux -d 15 | awk '{print $2}')
     fi
 
     if [ "x$pid" != "x" ]
     then
         echo $pid | xargs kill -${1:-9}
     fi
+}
+
+fzf-git-aliases() {
+    eval $(alias | grep git | fzf-tmux -d 15 | grep -Eoh '^\w+')
 }
 ############################################################
 #       POWERLINE

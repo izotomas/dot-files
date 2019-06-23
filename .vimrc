@@ -246,13 +246,17 @@ let g:airline_left_sep="\uE0B4"
 let g:airline_left_alt_sep="\uE0B5"
 let g:airline_right_sep="\uE0B6"
 let g:airline_right_alt_sep="\uE0B7"
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.notexists = '[+]'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = "\uE0B4"
 let g:airline#extensions#tabline#left_alt_sep = "\uE0B5"
 let g:airline#extensions#tabline#right_sep = "\uE0B6"
 let g:airline#extensions#tabline#right_alt_sep = "\uE0B7"
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.notexists = '[+]'
 
 
 " tmuxline
