@@ -18,8 +18,8 @@ Plug 'szw/vim-tags'
 
 "graphical improvements
 Plug 'neomake/neomake'
-Plug 'itchyny/lightline.vim'
-Plug 'shinchu/lightline-gruvbox.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'matze/vim-move'
@@ -209,7 +209,7 @@ let g:ycm_min_num_of_chars_for_completion=2
 let g:ale_javascript_eslint_use_global = 1
 " ultisnips
 " fzf-vim
-let g:fzf_layout = { 'down': '~25%' }
+        let g:fzf_layout = { 'down': '~25%' }
 
 " moving text via vim-move
 let g:move_key_modifier = 'S'
@@ -241,57 +241,19 @@ colors gruvbox
 set background=dark
 set noshowmode
 
-let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'fugitive': 'LightLineFugitive',
-      \   'readonly': 'LightLineReadonly',
-      \   'modified': 'LightLineModified',
-      \   'filename': 'LightLineFilename'
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
-      \ }
+let g:airline_theme='gruvbox'
+let g:airline_left_sep="\uE0B4"
+let g:airline_left_alt_sep="\uE0B5"
+let g:airline_right_sep="\uE0B6"
+let g:airline_right_alt_sep="\uE0B7"
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.notexists = '[+]'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = "\uE0B4"
+let g:airline#extensions#tabline#left_alt_sep = "\uE0B5"
+let g:airline#extensions#tabline#right_sep = "\uE0B6"
+let g:airline#extensions#tabline#right_alt_sep = "\uE0B7"
 
-function! LightLineModified()
-  if &filetype == "help"
-    return ""
-  elseif &modified
-    return "+"
-  elseif &modifiable
-    return ""
-  else
-    return ""
-  endif
-endfunction
-
-function! LightLineReadonly()
-  if &filetype == "help"
-    return ""
-  elseif &readonly
-    return ""
-  else
-    return ""
-  endif
-endfunction
-
-function! LightLineFilename()
-  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-       \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
-       \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
-endfunction
-
-function! LightLineFugitive()
-  if exists("*fugitive#head")
-    let branch = fugitive#head()
-    return branch !=# '' ? ' '.branch : ''
-  endif
-  return ''
-endfunction
 
 " tmuxline
 "au VimEnter * :Tmuxline lightline -- if theme was not exported
