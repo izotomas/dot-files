@@ -124,7 +124,6 @@ bindkey '^F^G' fzf-git-aliases
 #############################################################
 #	FUNCTIONS
 #############################################################
-zle -N fzf-git-aliases
 
 fzf-cd-tmux-widget() {
 	local cmd="${FZF_ALT_C_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune     -o -type d -print 2> /dev/null | cut -b3-"}"
@@ -165,6 +164,7 @@ fkill() {
 fzf-git-aliases() {
     eval $(alias | grep git | fzf-tmux -d 15 | grep -Eoh '^\w+')
 }
+zle -N fzf-git-aliases
 ############################################################
 #       POWERLINE
 ############################################################
