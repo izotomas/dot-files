@@ -258,11 +258,10 @@ endif
 let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.notexists = '[+]'
 
-
 " tmuxline
-"au VimEnter * :Tmuxline lightline -- if theme was not exported
 let g:tmuxline_preset = {
       \'a'    : '#S',
+      \'b'    : '#W',
       \'c'    : ['#(whoami)', '#(uptime | grep -ohe "up.*, [0-9] u" | sed "s/, [0-9] u//")'],
       \'win'  : ['#I', '#W'],
       \'cwin' : ['#I', '#W', '#F'],
@@ -270,10 +269,16 @@ let g:tmuxline_preset = {
       \'y'    : ['%R', '%a  %b %d', '%Y'],
       \'z'    : '#(hostname | sed "s/Tomass-MacBook.local/macbook/")'}
 
+let g:tmuxline_separators = {
+    \ 'left' : '\uE0B4',
+    \ 'left_alt': '\uE0B5',
+    \ 'right' : '\uE0B6',
+    \ 'right_alt' : '\uE0B7',
+    \ 'space' : ' '}
+
 " Flagging Unnecessary Whitespace and syntax checking
 highlight BadWhitespace ctermbg=red guibg=darkred
 autocmd BufRead,BufNewFile * match BadWhitespace /\s\+$/
-" autocmd! BufWritePost * Neomake " disabled until found out what was the problem
 
 " Line and numbers highlighting
 set cursorline
