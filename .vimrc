@@ -255,7 +255,7 @@ let g:airline#extensions#tabline#right_alt_sep = "\uE0B7"
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.branch = ''
 let g:airline_symbols.notexists = '[+]'
 
 " tmuxline
@@ -266,7 +266,7 @@ let g:tmuxline_preset = {
       \'win'  : ['#I', '#W'],
       \'cwin' : ['#I', '#W', '#F'],
       \'x'    : '#(cmus-remote -Q | grep "stream" | sed "s/stream/♬/")',
-      \'y'    : ['%R', '%a  %b %d', '%Y'],
+      \'y'    : ['%R', '%a', '%b %d', '%Y'],
       \'z'    : '#(hostname | sed "s/Tomass-MacBook.local/macbook/")'}
 
 let g:tmuxline_separators = {
