@@ -160,12 +160,9 @@ if has('mouse')
     set mouse=a
 endif
 
-if has("vms")
-    set nobackup	" do not keep a backup file, use versions instead
-else
-    set backup		" keep a backup file (restore to previous version)
-    set undofile	" keep an undo file (undo changes after closing)
-endif
+set backupdir=/tmp
+set backup		" keep a backup file (restore to previous version)
+set undofile	        " keep an undo file (undo changes after closing)
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
