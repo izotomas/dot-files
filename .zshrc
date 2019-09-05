@@ -42,6 +42,9 @@ COMPLETION_WAITING_DOTS="true"
 # Date format in history
 HIST_STAMPS="dd/mm/yyyy"
 
+# tee-clc java11 fix
+export TF_NOTELEMETRY=TRUE
+
 alias G="cd /Volumes/Mac\ HD/Users/tomasizo/Dropbox/Documents/Git/"
 alias vim='nvim'
 alias cc='pwd | tr -d '\n' | pbcopy' # copy current path to clipboard
