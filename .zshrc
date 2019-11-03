@@ -45,6 +45,11 @@ HIST_STAMPS="dd/mm/yyyy"
 # tee-clc java11 fix
 export TF_NOTELEMETRY=TRUE
 
+# nvm - node version manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+
 alias G="cd /Volumes/Mac\ HD/Users/tomasizo/Dropbox/Documents/Git/"
 alias vim='nvim'
 alias cc='pwd | tr -d '\n' | pbcopy' # copy current path to clipboard
