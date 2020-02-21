@@ -127,8 +127,8 @@ autocmd FileType python nmap <silent><Leader>x <Esc>:Khuno show<CR>
 " vim/neovim specific
 if has('nvim')
     set termguicolors
-    let g:python_host_prog = '/usr/local/bin/python'
-    let g:python3_host_prog = '/usr/local/bin/python3'
+    let g:python_host_prog = '~/anaconda3/bin/python'
+    let g:python3_host_prog = '~/anaconda3/bin/python3'
 else
     set ttyfast
     set ttymouse=xterm2
