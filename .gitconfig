@@ -4,7 +4,7 @@
 	name = Tomas Izo
 	email = tomas@izo.sk
 [core]
-        editor = nano
+	editor = vim
 	excludesfile = /Users/tomasizo/.gitignore_global
         pager = less
         autocrlf = false
@@ -22,3 +22,5 @@
 	sslCAInfo = /Users/tomasizo/.git-certs/gitlab.pem
 	ssVerify = false
 	sslVerify = false
+[git]
+	editor = vim
