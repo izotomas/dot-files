@@ -2,7 +2,7 @@
 #	PATHS, ALIASES & MISC
 #############################################################
 # Conda & Homebrew binaries and scripts before system ones
-export PATH=/Users/tomasizo/anaconda3/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:/opt/local/bin:$HOME/Library/Python/3.7/bin:$HOME/.composer/vendor/bin:$PATH
+export PATH=/Users/tomasizo/anaconda3/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:/opt/local/bin:$HOME/Library/Python/3.7/bin:$HOME/.composer/vendor/bin:$HOME/.local/bin:$PATH
 
 #Fuzzy search plugin
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
