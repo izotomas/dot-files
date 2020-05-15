@@ -27,6 +27,7 @@ Plug 'tpope/vim-repeat'
 Plug 'edkolev/tmuxline.vim'
 
 "text completion & editing
+Plug 'dag/vim-fish'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all'}
 Plug 'leafgarland/typescript-vim'
 Plug 'w0rp/ale'
@@ -125,10 +126,12 @@ autocmd FileType python nmap <silent><Leader>x <Esc>:Khuno show<CR>
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim/neovim specific
+" disable, beacuse if hangs on fish shell, also doesn't work well with conda
+let g:loaded_youcompleteme = 1
 if has('nvim')
     set termguicolors
-    let g:python_host_prog = '~/anaconda3/bin/python'
-    let g:python3_host_prog = '~/anaconda3/bin/python3'
+    "let g:python_host_prog = '~/anaconda3/bin/python'
+    "let g:python3_host_prog = '~/anaconda3/bin/python3'
 else
     set ttyfast
     set ttymouse=xterm2

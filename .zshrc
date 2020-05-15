@@ -2,7 +2,7 @@
 #	PATHS, ALIASES & MISC
 #############################################################
 # Conda & Homebrew binaries and scripts before system ones
-export PATH=/Users/tomasizo/anaconda3/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:/opt/local/bin:$HOME/Library/Python/3.7/bin:$HOME/.composer/vendor/bin:$HOME/.local/bin:$PATH
+export PATH=$HOME/anaconda3/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:/opt/local/bin:$HOME/Library/Python/3.7/bin:$HOME/.composer/vendor/bin:$HOME/.local/bin:$PATH
 
 #Fuzzy search plugin
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -45,7 +45,6 @@ HIST_STAMPS="dd/mm/yyyy"
 # tee-clc java11 fix
 export TF_NOTELEMETRY=TRUE
 
-alias G="cd /Volumes/Mac\ HD/Users/tomasizo/Dropbox/Documents/Git/"
 alias vim='nvim'
 alias cc='pwd | tr -d '\n' | pbcopy' # copy current path to clipboard
 alias ~='cd ~'
