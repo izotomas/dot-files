@@ -19,6 +19,9 @@ set -x TF_NOTELEMETRY 'TRUE'
 # enable fzf-tmux
 set -U FZF_TMUX 1
 
+# setup fish vim bindings
+fish_vi_key_bindings
+
 alias vim='nvim'
 
 #############################################################
@@ -28,6 +31,7 @@ if not functions -q fundle; eval (curl -sfL https://git.io/fundle-install); end
 
 fundle plugin 'oh-my-fish/theme-bobthefish'
 fundle plugin 'urbainvaes/fzf-marks'
+fundle plugin 'jhillyerd/plugin-git'
 
 fundle init
 
