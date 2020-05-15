@@ -28,7 +28,9 @@ Plug 'edkolev/tmuxline.vim'
 
 "text completion & editing
 Plug 'dag/vim-fish'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all'}
+Plug 'Shougo/deoplete.nvim', { 'do': 'UpdateRemotePlugins' }
+Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'ponko2/deoplete-fish'
 Plug 'leafgarland/typescript-vim'
 Plug 'w0rp/ale'
 Plug 'jelera/vim-javascript-syntax',  {'for': 'javascript'}
@@ -126,9 +128,8 @@ autocmd FileType python nmap <silent><Leader>x <Esc>:Khuno show<CR>
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim/neovim specific
-" disable, beacuse if hangs on fish shell, also doesn't work well with conda
-let g:loaded_youcompleteme = 1
 if has('nvim')
+    let g:deoplete#enable_at_startup = 1
     set termguicolors
     "let g:python_host_prog = '~/anaconda3/bin/python'
     "let g:python3_host_prog = '~/anaconda3/bin/python3'
@@ -185,12 +186,6 @@ if has("autocmd")
             \ endif
     augroup END
 
-    " load autocomplete and code snippets at launch
-    augroup load_us_ycm
-        autocmd!
-        autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
-                    \| autocmd! load_us_ycm
-    augroup END
 endif
 
 if has('langmap') && exists('+langnoremap')
@@ -201,10 +196,6 @@ if has('langmap') && exists('+langnoremap')
 endif
 
 let g:UltiSnipsExpandTrigger="<C-j>"
-" youcompleteme
-let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_min_num_of_chars_for_completion=2
 " ale
 let g:ale_javascript_eslint_use_global = 1
 " ultisnips

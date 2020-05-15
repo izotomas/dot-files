@@ -43,6 +43,7 @@ set -g theme_display_user yes
 set -g theme_color_scheme gruvbox
 set -g theme_newline_cursor yes
 set -g theme_newline_prompt '$ '
+set -g theme_display_git_master_branch yes
 
 #############################################################
 #	CONDA
