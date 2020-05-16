@@ -29,21 +29,47 @@ alias vim='nvim'
 #############################################################
 if not functions -q fundle; eval (curl -sfL https://git.io/fundle-install); end
 
-fundle plugin 'oh-my-fish/theme-bobthefish'
+fundle plugin 'jethrokuan/fzf'
 fundle plugin 'urbainvaes/fzf-marks'
 fundle plugin 'jhillyerd/plugin-git'
 
 fundle init
 
 #############################################################
-#	BOBTHEFISH
+#	COLORS
 #############################################################
-set -g theme_nerd_fonts yes
-set -g theme_display_user yes
-set -g theme_color_scheme gruvbox
-set -g theme_newline_cursor yes
-set -g theme_newline_prompt '$ '
-set -g theme_display_git_master_branch yes
+set -g fish_color_command b8bb26
+set -g fish_color_param ebdbb2
+set -g fish_color_redirection ebdbb2
+set -g fish_color_operator yellow
+
+set -Ux LSCOLORS CxfxcxdxBxegedabagacad
+
+# prompt starship
+starship init fish | source
+
+#############################################################
+#	MISC
+#############################################################
+function print_fish_colors --description 'Shows the various fish colors being used'
+    set -l clr_list (set -n | grep fish | grep color | grep -v __)
+    if test -n "$clr_list"
+        set -l bclr (set_color normal)
+        set -l bold (set_color --bold)
+        printf "\n| %-34s | %-34s |\n" Variable Definition
+        echo '|¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|'
+        for var in $clr_list
+            set -l def $$var
+            set -l clr (set_color $def ^/dev/null)
+            or begin
+                printf "| %-38s | %s%-38s$bclr |\n" "$var" (set_color --bold white --background=red) "$def"
+                continue
+            end
+            printf "| $clr%-38s$bclr | $bold%-38s$bclr |\n" "$var" "$def"
+        end
+        echo '|________________________________________|________________________________________|'\n
+    end
+end
 
 #############################################################
 #	CONDA

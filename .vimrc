@@ -24,6 +24,7 @@ Plug 'morhetz/gruvbox'
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'matze/vim-move'
 Plug 'tpope/vim-repeat'
+Plug 'cespare/vim-toml'
 Plug 'edkolev/tmuxline.vim'
 
 "text completion & editing
@@ -57,24 +58,27 @@ call plug#end()
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tab navigation
+nnoremap <silent>tn :tabnew<Space>
+" merge tabs to split
+nnoremap <silent>tm :Tabmerge left<Cr>
+"current split to new tab
+nnoremap <silent>ts <C-W>T
+" alt+>/< to swap between tabs
 nnoremap <silent>≥ :tabnext<CR>
 nnoremap <silent>≤ :tabprev<CR>
-nnoremap <silent>tn :tabnew<Space>
+" alt+shift+>/< to move tabs
 nnoremap <silent>˘ :tabm +<CR>
 nnoremap <silent>¯ :tabm -<CR>
-nnoremap <silent><tab> :>><CR>
-nnoremap <silent><S-tab> :<<<CR>
-"current tab merge to split
-nnoremap <silent>ts :Tabmerge left<Cr>
-"current split to new tab
-nnoremap <silent>st <C-W>T
+nnoremap <silent><tab> :><CR>
+nnoremap <silent><S-tab> :<<CR>
 
 "Splits
 "split horizontal/vertical
 nnoremap <silent>sv :vs<CR>
 nnoremap <silent>sh :split<CR>
-"circle between splits by Alt-comma
+"next split
 nnoremap , <C-w><C-w>
+"previous split
 nnoremap < <C-w>W
 "Alt-W as Ctrl-W (C-W) used in tmux
 nnoremap ∑ <C-W>
@@ -101,8 +105,6 @@ nnoremap <Leader><Leader> za
 "wrap text by comment
 vnoremap <Leader>. :call NERDComment(0, "toggle")<CR>
 nnoremap <Leader>. :call NERDComment(0, "toggle")<CR>
-"YouCompleteMe
-map <Leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "Ctrl bindings
 map <C-n> :NERDTreeToggle<CR>
@@ -122,7 +124,8 @@ nnoremap <silent>~~ :set invpaste paste?<CR>
 nnoremap <silent><Leader>n :set relativenumber? norelativenumber!<CR>
 "python static syntax check
 autocmd FileType python nmap <silent><Leader>x <Esc>:Khuno show<CR>
-
+" deoplete navigate through completions
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " #3 VIM/NEOVIM & PLUGINS CONFIG
 "
@@ -149,14 +152,14 @@ set clipboard=unnamed                   " clipboard from system
 set foldmethod=syntax                   " enable methods folding
 set foldlevel=99
 set hidden                              " enable switching buffers without save
-set history=50		                " keep 50 lines of command line history
-set ruler		                " show the cursor position all the time
-set showcmd		                " display incomplete commands
-set incsearch		                " do incremental searching
+set history=50		                    " keep 50 lines of command line history
+set ruler		                        " show the cursor position all the time
+set showcmd		                        " display incomplete commands
+set incsearch		                    " do incremental searching
 set relativenumber nu 	                " line numbering
 set omnifunc=syntaxcomplete#Complete    " smart autocompletion
 set backspace=indent,eol,start          " allow backspacing over everything in insert mode
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 set autoindent
 
 " In many terminal emulators the mouse works just fine, thus enable it.
@@ -165,8 +168,8 @@ if has('mouse')
 endif
 
 set backupdir=/tmp
-set backup		" keep a backup file (restore to previous version)
-set undofile	        " keep an undo file (undo changes after closing)
+set backup		    " keep a backup file (restore to previous version)
+set undofile	    " keep an undo file (undo changes after closing)
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")

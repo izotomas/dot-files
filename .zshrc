@@ -31,7 +31,7 @@ export EDITOR='vim lazygit'
 export KEYTIMEOUT=1
 
 # tmux autostart
-ZSH_TMUX_AUTOSTART="true"
+#ZSH_TMUX_AUTOSTART="true"
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"

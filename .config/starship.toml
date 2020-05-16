@@ -1,0 +1,48 @@
+prompt_order = [
+    "conda",
+    "directory",
+    "git_branch",
+    "git_status",
+    "line_break",
+    "character"
+]
+
+add_newline = false
+
+[character]
+style_faliure="bold #cc241d"
+style_success="bold #b8bb26"
+
+[directory]
+prefix = ""
+truncation_length = 8
+truncate_to_repo = true
+#style = "bold fg:#458588"
+style = "bold fg:#83a598"
+
+[git_branch]
+#style = "bold cyan"
+style = "bold #98971a"
+
+[git_status]
+stashed = " "
+stashed_count.enabled = true
+#style = "bold #d65d0e"
+style = "bold #d79921"
+
+[aws]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[dotnet]
+disabled = true
+
+[conda]
+disabled = false
+symbol = ""
+
+[package]
+disabled = true
+
