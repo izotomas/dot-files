@@ -17,17 +17,15 @@ style_success="bold #b8bb26"
 prefix = ""
 truncation_length = 8
 truncate_to_repo = true
-#style = "bold fg:#458588"
 style = "bold fg:#83a598"
 
 [git_branch]
-#style = "bold cyan"
 style = "bold #98971a"
+symbol = " "
 
 [git_status]
 stashed = " "
 stashed_count.enabled = true
-#style = "bold #d65d0e"
 style = "bold #d79921"
 
 [aws]
@@ -40,8 +38,8 @@ disabled = true
 disabled = true
 
 [conda]
+symbol = "  "
 disabled = false
-symbol = ""
 
 [package]
 disabled = true
