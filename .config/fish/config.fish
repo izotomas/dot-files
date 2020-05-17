@@ -2,10 +2,10 @@
 #	PATHS, ALIASES & MISC
 #############################################################
 # conda, brew & aws binaries before the system ones
-set -gx PATH $HOME/anaconda3/bin /usr/local/bin /usr/local/sbin /usr/local/opt/ruby/bin /opt/local/bin $HOME/Library/Python/3.7/bin $HOME/.composer/vendor/bin $HOME/.local/bin $PATH
+set -gx PATH /usr/local/Caskroom/miniconda/base/bin /usr/local/bin /usr/local/sbin /usr/local/opt/ruby/bin /opt/local/bin /opt/local/sbin $HOME/.local/bin $PATH
 
 # alias tmux for proper coloring
-set -x TERM 'xterm-256color'
+set -x TERM 'screen-256color'
 
 # cmus notification enable
 set -x PYTHON_CONFIGURE_OPTS '--enable-framework'
@@ -76,5 +76,10 @@ end
 #############################################################
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-eval /Users/tomasizo/anaconda3/bin/conda "shell.fish" "hook" $argv | source
+eval /usr/local/Caskroom/miniconda/base/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
+
+# HACK
+conda deactivate
+conda deactivate
+conda activate

@@ -2,7 +2,7 @@
 #	PATHS, ALIASES & MISC
 #############################################################
 # Conda & Homebrew binaries and scripts before system ones
-export PATH=$HOME/anaconda3/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:/opt/local/bin:$HOME/Library/Python/3.7/bin:$HOME/.composer/vendor/bin:$HOME/.local/bin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:/opt/local/bin:$HOME/.local/bin:$PATH
 
 #Fuzzy search plugin
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -198,14 +198,14 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/tomasizo/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/tomasizo/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/tomasizo/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/tomasizo/anaconda3/bin:$PATH"
+        export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
     fi
 fi
 unset __conda_setup

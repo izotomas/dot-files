@@ -134,8 +134,8 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 if has('nvim')
     let g:deoplete#enable_at_startup = 1
     set termguicolors
-    "let g:python_host_prog = '~/anaconda3/bin/python'
-    "let g:python3_host_prog = '~/anaconda3/bin/python3'
+    let g:python_host_prog = '/usr/local/Caskroom/miniconda/base/bin/python'
+    let g:python3_host_prog = '/usr/local/Caskroom/miniconda/base/bin/python3'
 else
     set ttyfast
     set ttymouse=xterm2
