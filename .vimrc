@@ -30,10 +30,10 @@ Plug 'edkolev/tmuxline.vim'
 "text completion & editing
 Plug 'dag/vim-fish'
 Plug 'Shougo/deoplete.nvim', { 'do': 'UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'deoplete-plugins/deoplete-jedi', { 'for': 'python' }
 Plug 'ponko2/deoplete-fish'
 Plug 'leafgarland/typescript-vim'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'jelera/vim-javascript-syntax',  {'for': 'javascript'}
 Plug 'vim-scripts/indentpython.vim', { 'for': 'python' }
 Plug 'tmhedberg/SimpylFold', {'for': 'python' }
@@ -44,7 +44,6 @@ Plug 'vim-scripts/auto-pairs'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-obsession'
-Plug 'SirVer/ultisnips'
 Plug 'Yggdroot/indentLine'
 Plug 'djoshea/vim-autoread'
 
@@ -192,18 +191,14 @@ if has("autocmd")
 endif
 
 if has('langmap') && exists('+langnoremap')
-  " Prevent that the langmap option applies to characters that result from a
+    " Prevent that the langmap option applies to characters that result from a
   " mapping.  If unset (default), this may break plugins (but it's backward
   " compatible).
   set langnoremap
 endif
 
-let g:UltiSnipsExpandTrigger="<C-j>"
-" ale
-let g:ale_javascript_eslint_use_global = 1
-" ultisnips
 " fzf-vim
-        let g:fzf_layout = { 'down': '~25%' }
+let g:fzf_layout = { 'down': '~25%' }
 
 " moving text via vim-move
 let g:move_key_modifier = 'S'
@@ -219,6 +214,7 @@ let g:plist_display_format = 'xml'
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
 " Ale
+let g:ale_javascript_eslint_use_global = 1
 let g:ale_fixers = { 'javascript': ['eslint'], 'typescript': ['eslint'] }
 let g:ale_linters = {
             \ 'javascript': ['eslint'],
