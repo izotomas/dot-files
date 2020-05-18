@@ -17,7 +17,14 @@ set -x LANG 'en_US.UTF-8'
 set -x TF_NOTELEMETRY 'TRUE'
 
 # enable fzf-tmux
-set -U FZF_TMUX 1
+set -U FZF_TMUX
+set -U FZF_TMUX_OPTS '-p 80%'
+
+# theme for bat and fzf preview
+set -x BAT_THEME "base16"
+
+# remove greeting
+set fish_greeting
 
 # setup fish vim bindings
 fish_vi_key_bindings

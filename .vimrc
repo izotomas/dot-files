@@ -6,7 +6,6 @@ call plug#begin('~/.vim/plugged')
 
 "navigation & searching
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'junegunn/fzf',  { 'dir': '~/.fzf',  'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
 Plug 'tweekmonster/fzf-filemru'
@@ -57,30 +56,27 @@ call plug#end()
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tab navigation
-nnoremap <silent>tn :tabnew<Space>
+nnoremap tn :tabnew<Space>
+nnoremap <C-W><C-w> :tabnext<CR>
+nnoremap <C-W><C-q> :tabprev<CR>
 " merge tabs to split
-nnoremap <silent>tm :Tabmerge left<Cr>
+nnoremap tm :Tabmerge left<Cr>
 "current split to new tab
-nnoremap <silent>ts <C-W>T
-" alt+>/< to swap between tabs
-nnoremap <silent>≥ :tabnext<CR>
-nnoremap <silent>≤ :tabprev<CR>
-" alt+shift+>/< to move tabs
-nnoremap <silent>˘ :tabm +<CR>
-nnoremap <silent>¯ :tabm -<CR>
-nnoremap <silent><tab> :><CR>
-nnoremap <silent><S-tab> :<<CR>
+nnoremap ts <C-w>T
+"to move tabs
+nnoremap <silent><C-w>> :tabm +<CR>
+nnoremap <silent><C-w>< :tabm -<CR>
 
 "Splits
 "split horizontal/vertical
-nnoremap <silent>sv :vs<CR>
-nnoremap <silent>sh :split<CR>
+nnoremap <C-W>v :split<CR>
+nnoremap <C-W>s :vs<CR>
+"close current split
+nnoremap <C-w>x <C-w>c
 "next split
-nnoremap , <C-w><C-w>
+nnoremap , <C-w>w
 "previous split
 nnoremap < <C-w>W
-"Alt-W as Ctrl-W (C-W) used in tmux
-nnoremap ∑ <C-W>
 "split resizing
 nnoremap <silent><Right> :vertical resize +5<CR>
 nnoremap <silent><Left> :vertical resize -5<CR>
@@ -90,9 +86,6 @@ nnoremap <silent><Down> :res -5<CR>
 "Leader bindings
 "leader to space
 let mapleader =' '
-nnoremap <Leader>j O<Esc>
-nnoremap <Leader>k o<Esc>
-nnoremap <Leader>l i<CR><Esc>
 nnoremap <Leader>s :sv<CR>
 nnoremap <Leader>v :vs<CR>
 nnoremap <Leader>q :q!<CR>
@@ -106,6 +99,8 @@ vnoremap <Leader>. :call NERDComment(0, "toggle")<CR>
 nnoremap <Leader>. :call NERDComment(0, "toggle")<CR>
 
 "Ctrl bindings
+" increment number
+nnoremap <C-i> <C-a>
 map <C-n> :NERDTreeToggle<CR>
 map <C-t> :Tagbar<CR>
 nnoremap <C-p> :Files<CR>
@@ -124,7 +119,7 @@ nnoremap <silent><Leader>n :set relativenumber? norelativenumber!<CR>
 "python static syntax check
 autocmd FileType python nmap <silent><Leader>x <Esc>:Khuno show<CR>
 " deoplete navigate through completions
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " #3 VIM/NEOVIM & PLUGINS CONFIG
 "
@@ -167,7 +162,7 @@ if has('mouse')
 endif
 
 set backupdir=/tmp
-set backup		    " keep a backup file (restore to previous version)
+set backup		    " keep a backup file (restore  previous version)
 set undofile	    " keep an undo file (undo changes after closing)
 
 " Only do this part when compiled with support for autocommands.
@@ -230,7 +225,7 @@ let g:ale_linters = {
 colors gruvbox
 set background=dark
 set noshowmode
-
+hi Normal ctermbg=NONE  guibg=NONE
 let g:airline_theme='gruvbox'
 let g:airline_left_sep="\uE0B4"
 let g:airline_left_alt_sep="\uE0B5"
