@@ -21,7 +21,7 @@ set -U FZF_TMUX
 set -U FZF_TMUX_OPTS '-p 80%'
 
 # theme for bat and fzf preview
-set -x BAT_THEME "base16"
+set -x BAT_THEME "zenbrun"
 
 # remove greeting
 set fish_greeting
@@ -39,6 +39,7 @@ if not functions -q fundle; eval (curl -sfL https://git.io/fundle-install); end
 fundle plugin 'jethrokuan/fzf'
 fundle plugin 'urbainvaes/fzf-marks'
 fundle plugin 'jhillyerd/plugin-git'
+fundle plugin 'edc/bass'
 
 fundle init
 
@@ -78,6 +79,21 @@ function print_fish_colors --description 'Shows the various fish colors being us
     end
 end
 
+function take
+    mkdir -p $argv
+    cd $argv
+end
+
+function start_tmux
+    if type tmux > /dev/null
+        #if not inside a tmux session, and if no session is started, start a new session
+        if test -z "$TMUX" ; and test -z $TERMINAL_CONTEXT
+            tmux -2 attach; or tmux -2 new-session
+        end
+    end
+end
+
+start_tmux
 #############################################################
 #	CONDA
 #############################################################

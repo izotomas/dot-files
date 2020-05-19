@@ -45,6 +45,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-obsession'
 Plug 'Yggdroot/indentLine'
 Plug 'djoshea/vim-autoread'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 "git plugin
 Plug 'tpope/vim-fugitive'
@@ -82,6 +84,7 @@ nnoremap <silent><Right> :vertical resize +5<CR>
 nnoremap <silent><Left> :vertical resize -5<CR>
 nnoremap <silent><Up> :res +5<CR>
 nnoremap <silent><Down> :res -5<CR>
+nnoremap <C-W>o <C-W>\| <C-W>_<CR>
 
 "Leader bindings
 "leader to space
@@ -124,6 +127,10 @@ inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
 " #3 VIM/NEOVIM & PLUGINS CONFIG
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger="<S-Tab>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+
 " vim/neovim specific
 if has('nvim')
     let g:deoplete#enable_at_startup = 1
@@ -223,9 +230,9 @@ let g:ale_linters = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color Scheme
 colors gruvbox
-set background=dark
+"set background=dark
 set noshowmode
-hi Normal ctermbg=NONE  guibg=NONE
+"hi Normal ctermbg=NONE  guibg=NONE
 let g:airline_theme='gruvbox'
 let g:airline_left_sep="\uE0B4"
 let g:airline_left_alt_sep="\uE0B5"
