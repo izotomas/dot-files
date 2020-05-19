@@ -20,8 +20,8 @@ set -x TF_NOTELEMETRY 'TRUE'
 set -U FZF_TMUX
 set -U FZF_TMUX_OPTS '-p 80%'
 
-# theme for bat and fzf preview
-set -x BAT_THEME "zenbrun"
+# theme for bat and fzf preview (zenbrun not found) 
+# set -x BAT_THEME 'zenbrun'
 
 # remove greeting
 set fish_greeting

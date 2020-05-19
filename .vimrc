@@ -47,9 +47,10 @@ Plug 'Yggdroot/indentLine'
 Plug 'djoshea/vim-autoread'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-
-"git plugin
 Plug 'tpope/vim-fugitive'
+
+"custom scripts
+"Plug 'file://'.expand('~/.config/nvim/custom')
 
 call plug#end()
 
@@ -59,8 +60,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tab navigation
 nnoremap tn :tabnew<Space>
-nnoremap <C-W><C-w> :tabnext<CR>
-nnoremap <C-W><C-q> :tabprev<CR>
+nnoremap <M-Tab> :tabnext<CR>
 " merge tabs to split
 nnoremap tm :Tabmerge left<Cr>
 "current split to new tab
@@ -76,23 +76,22 @@ nnoremap <C-W>s :vs<CR>
 "close current split
 nnoremap <C-w>x <C-w>c
 "next split
+nnoremap <M-w> <C-w>w
 nnoremap , <C-w>w
 "previous split
-nnoremap < <C-w>W
+nnoremap <M-q> <C-w>W
 "split resizing
 nnoremap <silent><Right> :vertical resize +5<CR>
 nnoremap <silent><Left> :vertical resize -5<CR>
 nnoremap <silent><Up> :res +5<CR>
 nnoremap <silent><Down> :res -5<CR>
-nnoremap <C-W>o <C-W>\| <C-W>_<CR>
+nnoremap <C-W>z <C-W>\| <C-W>_<CR>
 
 "Leader bindings
-"leader to space
 let mapleader =' '
-nnoremap <Leader>s :sv<CR>
-nnoremap <Leader>v :vs<CR>
 nnoremap <Leader>q :q!<CR>
 nnoremap <Leader>w :w!<CR>
+"noremap <expr> <leader>r SetSource()
 nnoremap <Leader>r :source ~/.vimrc<CR>
 nnoremap <Leader>R :source ~/.vimrc<CR>:PlugInstall<CR>
 "Enable methods folding with the spacebar
@@ -101,9 +100,7 @@ nnoremap <Leader><Leader> za
 vnoremap <Leader>. :call NERDComment(0, "toggle")<CR>
 nnoremap <Leader>. :call NERDComment(0, "toggle")<CR>
 
-"Ctrl bindings
 " increment number
-nnoremap <C-i> <C-a>
 map <C-n> :NERDTreeToggle<CR>
 map <C-t> :Tagbar<CR>
 nnoremap <C-p> :Files<CR>
@@ -116,6 +113,7 @@ noremap <silent> <C-k> :call smooth_scroll#up(&scroll,  10,  3)<CR>
 noremap <silent> <C-j> :call smooth_scroll#down(&scroll,  10,  3)<CR>
 
 "MISC bindings
+nnoremap <C-i> <C-a>
 nnoremap // :set hlsearch! hlsearch?<cr>
 nnoremap <silent>~~ :set invpaste paste?<CR>
 nnoremap <silent><Leader>n :set relativenumber? norelativenumber!<CR>
@@ -124,9 +122,10 @@ autocmd FileType python nmap <silent><Leader>x <Esc>:Khuno show<CR>
 " deoplete navigate through completions
 inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" #3 VIM/NEOVIM & PLUGINS CONFIG
+" #3 VARIABLES, PLUGINS & FUNCTIONS
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 let g:UltiSnipsExpandTrigger="<S-Tab>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-k>"
@@ -190,14 +189,16 @@ if has("autocmd")
             \ endif
     augroup END
 
+
 endif
 
 if has('langmap') && exists('+langnoremap')
-    " Prevent that the langmap option applies to characters that result from a
+  " Prevent that the langmap option applies to characters that result from a
   " mapping.  If unset (default), this may break plugins (but it's backward
   " compatible).
   set langnoremap
 endif
+
 
 " fzf-vim
 let g:fzf_layout = { 'down': '~25%' }
@@ -225,7 +226,7 @@ let g:ale_linters = {
 \}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" #4 COLOR SETTINGS & SYNTAX HIGHLIGHTING
+" #4 COLOR SETTINGS & SYNTAX HIGHLIGHTING:
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color Scheme
