@@ -2,7 +2,7 @@
 #	PATHS, ALIASES & MISC
 #############################################################
 # conda, brew & aws binaries before the system ones
-set -gx PATH /usr/local/Caskroom/miniconda/base/bin /usr/local/bin /usr/local/sbin /usr/local/opt/ruby/bin /opt/local/bin /opt/local/sbin $HOME/.local/bin $PATH
+set -gx PATH /usr/local/bin /usr/local/sbin /usr/local/opt/ruby/bin /opt/local/bin /opt/local/sbin $HOME/.local/bin $PATH
 
 # alias tmux for proper coloring
 set -x TERM 'screen-256color'
@@ -103,7 +103,6 @@ start_tmux
 eval /usr/local/Caskroom/miniconda/base/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
 
-# HACK
-conda deactivate
+# HACK: for some reson conda was not activating propertly
 conda deactivate
 conda activate

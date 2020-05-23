@@ -15,6 +15,7 @@ Plug 'vim-scripts/Tabmerge'
 Plug 'wesQ3/vim-windowswap'
 Plug 'szw/vim-tags'
 Plug 'kana/vim-arpeggio'
+Plug 'christoomey/vim-tmux-navigator'
 
 "graphical improvements
 Plug 'neomake/neomake'
@@ -51,10 +52,10 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'benmills/vimux'
 Plug 'tmhedberg/SimpylFold'
+
+" my work
 Plug 'izotomas/lazygit-vim'
 
-"custom scripts
-"Plug 'file://'.expand('~/Work/lazygit-vim')
 
 call plug#end()
 
@@ -115,8 +116,8 @@ nnoremap <C-b> :Buffers<CR>
 nnoremap <C-c> :Commits<CR>
 nnoremap <C-g> :Lazygit<CR>
 
-noremap <silent> <C-k> :call smooth_scroll#up(&scroll,  10,  3)<CR>
-noremap <silent> <C-j> :call smooth_scroll#down(&scroll,  10,  3)<CR>
+noremap <silent> <M-k> :call smooth_scroll#up(&scroll,  10,  3)<CR>
+noremap <silent> <M-j> :call smooth_scroll#down(&scroll,  10,  3)<CR>
 
 " Arpeggio bingings
 Arpeggio nnoremap vp :VimuxPromptCommand<CR>
