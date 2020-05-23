@@ -14,6 +14,7 @@ Plug 'terryma/vim-smooth-scroll'
 Plug 'vim-scripts/Tabmerge'
 Plug 'wesQ3/vim-windowswap'
 Plug 'szw/vim-tags'
+Plug 'kana/vim-arpeggio'
 
 "graphical improvements
 Plug 'neomake/neomake'
@@ -48,26 +49,28 @@ Plug 'djoshea/vim-autoread'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
+Plug 'benmills/vimux'
+Plug 'tmhedberg/SimpylFold'
 
 "custom scripts
 "Plug 'file://'.expand('~/.config/nvim/custom')
 
 call plug#end()
 
+call arpeggio#load()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " #2 KEY BINDINGS & CONTROLL
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tab navigation
-nnoremap tn :tabnew<Space>
-nnoremap <M-Tab> :tabnext<CR>
+"Buffers
+nnoremap <silent><M-Tab> :bnext<CR>
+nnoremap <silent><C-w>> :bnext<CR>
+nnoremap <silent><C-w>< :bprev<CR>
+
+"Tabs
+nnoremap <C-w>tn :tabnew<Space>
 " merge tabs to split
-nnoremap tm :Tabmerge left<Cr>
-"current split to new tab
-nnoremap ts <C-w>T
-"to move tabs
-nnoremap <silent><C-w>> :tabm +<CR>
-nnoremap <silent><C-w>< :tabm -<CR>
+nnoremap <C-w>tm :Tabmerge left<Cr>
 
 "Splits
 "split horizontal/vertical
@@ -89,7 +92,8 @@ nnoremap <C-W>z <C-W>\| <C-W>_<CR>
 
 "Leader bindings
 let mapleader =' '
-nnoremap <Leader>q :q!<CR>
+nnoremap <silent><Leader>Q :q!<CR>
+nnoremap <silent><leader>q :bp <BAR> bd #<CR>
 nnoremap <Leader>w :w!<CR>
 "noremap <expr> <leader>r SetSource()
 nnoremap <Leader>r :source ~/.vimrc<CR>
@@ -107,10 +111,16 @@ nnoremap <C-p> :Files<CR>
 nnoremap <C-f> :GFiles<CR>
 nnoremap <C-m> :History<CR>
 nnoremap <C-b> :Buffers<CR>
-nnoremap <C-g> :Commits<CR>
-nnoremap <C-d> :Gdiff<CR>
+nnoremap <C-c> :Commits<CR>
+nnoremap <C-g> :Lazygit<CR>
+"nnoremap <C-d> :Gdiff<CR>
 noremap <silent> <C-k> :call smooth_scroll#up(&scroll,  10,  3)<CR>
 noremap <silent> <C-j> :call smooth_scroll#down(&scroll,  10,  3)<CR>
+
+" Arpeggio bingings
+Arpeggio nnoremap vp :VimuxPromptCommand<CR>
+Arpeggio nnoremap vc :VimuxCloseRunner<CR>
+Arpeggio nnoremap vl :VimuxRunLastCommand<CR>
 
 "MISC bindings
 nnoremap <C-i> <C-a>
@@ -121,6 +131,7 @@ nnoremap <silent><Leader>n :set relativenumber? norelativenumber!<CR>
 autocmd FileType python nmap <silent><Leader>x <Esc>:Khuno show<CR>
 " deoplete navigate through completions
 inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " #3 VARIABLES, PLUGINS & FUNCTIONS
 "
@@ -176,6 +187,7 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.applescript setf applescript
     autocmd InsertEnter,FocusLost * :set norelativenumber
     autocmd InsertLeave,FocusGained * :set relativenumber
+    autocmd FileType help noremap <buffer>q :q<CR>
 
     augroup vimrcEx
         " clear the group
@@ -201,7 +213,40 @@ endif
 
 
 " fzf-vim
-let g:fzf_layout = { 'down': '~25%' }
+"if exists('$TMUX')
+  "let g:fzf_layout = { 'tmux': '-p60%,60%' }
+"else
+  "let g:fzf_layout = { 'down': '~25%' }
+"endif
+
+if has('nvim') && !exists('g:fzf_layout')
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+endif
+
+function! s:list_buffers()
+  redir => list
+  silent ls
+  redir END
+  return split(list, "\n")
+endfunction
+
+function! s:delete_buffers(lines)
+  execute 'bwipeout' join(map(a:lines, {_, line -> split(line)[0]}))
+endfunction
+
+command! BD call fzf#run(fzf#wrap({
+  \ 'source': s:list_buffers(),
+  \ 'sink*': { lines -> s:delete_buffers(lines) },
+  \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
+  \ }))
+
+function! s:open_lazygit()
+    execute ":silent ! tmux popup -KER \"lazygit -p '" . getcwd() . "'\" "
+endfunction
+
+command! Lazygit call s:open_lazygit()
 
 " moving text via vim-move
 let g:move_key_modifier = 'S'
@@ -244,6 +289,7 @@ let g:airline#extensions#tabline#left_sep = "\uE0B4"
 let g:airline#extensions#tabline#left_alt_sep = "\uE0B5"
 let g:airline#extensions#tabline#right_sep = "\uE0B6"
 let g:airline#extensions#tabline#right_alt_sep = "\uE0B7"
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}

@@ -20,7 +20,7 @@ set -x TF_NOTELEMETRY 'TRUE'
 set -U FZF_TMUX
 set -U FZF_TMUX_OPTS '-p 80%'
 
-# theme for bat and fzf preview (zenbrun not found) 
+# theme for bat and fzf preview (zenbrun not found)
 # set -x BAT_THEME 'zenbrun'
 
 # remove greeting
@@ -40,6 +40,7 @@ fundle plugin 'jethrokuan/fzf'
 fundle plugin 'urbainvaes/fzf-marks'
 fundle plugin 'jhillyerd/plugin-git'
 fundle plugin 'edc/bass'
+fundle plugin 'kevinhwang91/fzf-tmux-script'
 
 fundle init
 
