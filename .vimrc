@@ -12,7 +12,6 @@ Plug 'tweekmonster/fzf-filemru'
 Plug 'vim-scripts/Tagbar', { 'on': 'TagbarToggle' }
 Plug 'terryma/vim-smooth-scroll'
 Plug 'vim-scripts/Tabmerge'
-Plug 'wesQ3/vim-windowswap'
 Plug 'szw/vim-tags'
 Plug 'kana/vim-arpeggio'
 Plug 'christoomey/vim-tmux-navigator'
@@ -22,22 +21,22 @@ Plug 'neomake/neomake'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
-Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'matze/vim-move'
 Plug 'tpope/vim-repeat'
 Plug 'cespare/vim-toml'
 Plug 'edkolev/tmuxline.vim'
+Plug 'auwsmit/vim-active-numbers'
 
 "text completion & editing
-Plug 'dag/vim-fish'
+Plug 'dag/vim-fish', {'for': 'fish'}
+Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'Shougo/deoplete.nvim', { 'do': 'UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi', { 'for': 'python' }
-Plug 'ponko2/deoplete-fish'
+Plug 'ponko2/deoplete-fish', {'for': 'fish'}
 Plug 'leafgarland/typescript-vim'
 Plug 'dense-analysis/ale'
 Plug 'jelera/vim-javascript-syntax',  {'for': 'javascript'}
 Plug 'vim-scripts/indentpython.vim', { 'for': 'python' }
-Plug 'tmhedberg/SimpylFold', {'for': 'python' }
 Plug 'alfredodeza/khuno.vim', { 'for': 'python' }
 Plug 'darfink/vim-plist', {'for': 'plist'}
 Plug 'berdandy/AnsiEsc.vim'
@@ -49,7 +48,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'djoshea/vim-autoread'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'tpope/vim-fugitive'
 Plug 'benmills/vimux'
 Plug 'tmhedberg/SimpylFold'
 
@@ -97,7 +95,6 @@ let mapleader =' '
 nnoremap <silent><Leader>Q :q!<CR>
 nnoremap <silent><leader>q :bp <BAR> bd #<CR>
 nnoremap <Leader>w :w!<CR>
-"noremap <expr> <leader>r SetSource()
 nnoremap <Leader>r :source ~/.vimrc<CR>
 nnoremap <Leader>R :source ~/.vimrc<CR>:PlugInstall<CR>
 "Enable methods folding with the spacebar
@@ -116,8 +113,8 @@ nnoremap <C-b> :Buffers<CR>
 nnoremap <C-c> :Commits<CR>
 nnoremap <C-g> :Lazygit<CR>
 
-noremap <silent> <M-k> :call smooth_scroll#up(&scroll,  10,  3)<CR>
-noremap <silent> <M-j> :call smooth_scroll#down(&scroll,  10,  3)<CR>
+noremap <silent> <M-k> :call smooth_scroll#up(&scroll,  10,  2)<CR>
+noremap <silent> <M-j> :call smooth_scroll#down(&scroll,  10,  2)<CR>
 
 " Arpeggio bingings
 Arpeggio nnoremap vp :VimuxPromptCommand<CR>
@@ -138,7 +135,6 @@ inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
 " #3 VARIABLES, PLUGINS & FUNCTIONS
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 let g:UltiSnipsExpandTrigger="<S-Tab>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-k>"
