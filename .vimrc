@@ -51,9 +51,10 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'benmills/vimux'
 Plug 'tmhedberg/SimpylFold'
+Plug 'izotomas/lazygit-vim'
 
 "custom scripts
-"Plug 'file://'.expand('~/.config/nvim/custom')
+"Plug 'file://'.expand('~/Work/lazygit-vim')
 
 call plug#end()
 
@@ -113,7 +114,7 @@ nnoremap <C-m> :History<CR>
 nnoremap <C-b> :Buffers<CR>
 nnoremap <C-c> :Commits<CR>
 nnoremap <C-g> :Lazygit<CR>
-"nnoremap <C-d> :Gdiff<CR>
+
 noremap <silent> <C-k> :call smooth_scroll#up(&scroll,  10,  3)<CR>
 noremap <silent> <C-j> :call smooth_scroll#down(&scroll,  10,  3)<CR>
 
@@ -241,12 +242,6 @@ command! BD call fzf#run(fzf#wrap({
   \ 'sink*': { lines -> s:delete_buffers(lines) },
   \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
   \ }))
-
-function! s:open_lazygit()
-    execute ":silent ! tmux popup -KER \"lazygit -p '" . getcwd() . "'\" "
-endfunction
-
-command! Lazygit call s:open_lazygit()
 
 " moving text via vim-move
 let g:move_key_modifier = 'S'
