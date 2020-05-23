@@ -92,7 +92,9 @@ nnoremap <C-W>z <C-W>\| <C-W>_<CR>
 
 "Leader bindings
 let mapleader =' '
-nnoremap <silent><Leader>Q :q!<CR>
+
+noremap <silent><Leader>qq :qa!<CR>
+noremap <silent><Leader>Q :q!<CR>
 nnoremap <silent><leader>q :bp <BAR> bd #<CR>
 nnoremap <Leader>w :w!<CR>
 nnoremap <Leader>r :source ~/.vimrc<CR>
