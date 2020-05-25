@@ -139,6 +139,9 @@ let g:UltiSnipsExpandTrigger="<S-Tab>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 
+let g:actnum_exclude =
+      \ [ 'tagbar', 'vimshell', 'w3m', 'nerdtree', 'fzf' ]
+
 " vim/neovim specific
 if has('nvim')
     let g:deoplete#enable_at_startup = 1
@@ -267,10 +270,9 @@ let g:ale_linters = {
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color Scheme
+let g:gruvbox_number_column='bg1'
 colors gruvbox
-"set background=dark
 set noshowmode
-"hi Normal ctermbg=NONE  guibg=NONE
 let g:airline_theme='gruvbox'
 let g:airline_left_sep="\uE0B4"
 let g:airline_left_alt_sep="\uE0B5"
@@ -313,5 +315,4 @@ autocmd BufRead,BufNewFile * match BadWhitespace /\s\+$/
 
 " Line and numbers highlighting
 set cursorline
-autocmd BufRead,BufNewFile * hi LineNr ctermbg=237
 set numberwidth=6
