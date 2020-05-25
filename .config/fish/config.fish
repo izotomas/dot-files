@@ -20,6 +20,7 @@ set -x TF_NOTELEMETRY 'TRUE'
 set -U FZF_TMUX
 set -U FZF_TMUX_OPTS '-p 80%'
 
+set -gx EDITOR 'nvim'
 # theme for bat and fzf preview (zenbrun not found)
 # set -x BAT_THEME 'zenbrun'
 
@@ -30,7 +31,7 @@ set fish_greeting
 fish_vi_key_bindings
 
 alias vim='nvim'
-
+alias mux='tmuxinator'
 #############################################################
 #	PLUGIN MANAGER
 #############################################################

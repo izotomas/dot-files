@@ -99,8 +99,6 @@ nnoremap <silent><leader>q :bp <BAR> bd #<CR>
 nnoremap <Leader>w :w!<CR>
 nnoremap <Leader>r :source ~/.vimrc<CR>
 nnoremap <Leader>R :source ~/.vimrc<CR>:PlugInstall<CR>
-"Enable methods folding with the spacebar
-nnoremap <Leader><Leader> za
 "wrap text by comment
 vnoremap <Leader>. :call NERDComment(0, "toggle")<CR>
 nnoremap <Leader>. :call NERDComment(0, "toggle")<CR>
@@ -115,8 +113,8 @@ nnoremap <C-b> :Buffers<CR>
 nnoremap <C-c> :Commits<CR>
 nnoremap <C-g> :Lazygit<CR>
 
-noremap <silent> <M-k> :call smooth_scroll#up(&scroll,  10,  2)<CR>
-noremap <silent> <M-j> :call smooth_scroll#down(&scroll,  10,  2)<CR>
+noremap <silent> <C-u> :call smooth_scroll#up(&scroll,  10,  2)<CR>
+noremap <silent> <C-d> :call smooth_scroll#down(&scroll,  10,  2)<CR>
 
 " Arpeggio bingings
 Arpeggio nnoremap vp :VimuxPromptCommand<CR>
