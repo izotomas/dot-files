@@ -5,16 +5,17 @@
 call plug#begin('~/.vim/plugged')
 
 "navigation & searching
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeClose'] }
+Plug 'vim-scripts/Tagbar', { 'on': ['TagbarToggle', 'TagbarClose'] }
 Plug 'junegunn/fzf',  { 'dir': '~/.fzf',  'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
 Plug 'tweekmonster/fzf-filemru'
-Plug 'vim-scripts/Tagbar', { 'on': 'TagbarToggle' }
 Plug 'terryma/vim-smooth-scroll'
 Plug 'vim-scripts/Tabmerge', { 'on': 'Tabmerge' }
-Plug 'szw/vim-tags'
+Plug 'shojzw/vim-tags'
 Plug 'kana/vim-arpeggio'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'easymotion/vim-easymotion'
 
 "graphical improvements
 Plug 'neomake/neomake'
@@ -104,8 +105,8 @@ vnoremap <Leader>. :call NERDComment(0, "toggle")<CR>
 nnoremap <Leader>. :call NERDComment(0, "toggle")<CR>
 
 " increment number
-map <C-n> :TagbarClose<CR>\| :NERDTreeToggle<CR>
-map <C-t> :NERDTreeClose<CR>\| :TagbarToggle<CR>
+nnoremap <C-n> :TagbarClose<CR>\| :NERDTreeToggle<CR>
+nnoremap <C-t> :NERDTreeClose<CR>\| :TagbarToggle<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-f> :GFiles<CR>
 nnoremap <C-m> :History<CR>
@@ -130,7 +131,11 @@ nnoremap <silent><Leader>n :set relativenumber? norelativenumber!<CR>
 autocmd FileType python nmap <silent><Leader>x <Esc>:Khuno show<CR>
 " deoplete navigate through completions
 inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
-
+" easymotion
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-sn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " #3 VARIABLES, PLUGINS & FUNCTIONS
 "
