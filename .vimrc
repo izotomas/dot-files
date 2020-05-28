@@ -11,7 +11,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tweekmonster/fzf-filemru'
 Plug 'vim-scripts/Tagbar', { 'on': 'TagbarToggle' }
 Plug 'terryma/vim-smooth-scroll'
-Plug 'vim-scripts/Tabmerge'
+Plug 'vim-scripts/Tabmerge', { 'on': 'Tabmerge' }
 Plug 'szw/vim-tags'
 Plug 'kana/vim-arpeggio'
 Plug 'christoomey/vim-tmux-navigator'
@@ -91,9 +91,9 @@ nnoremap <silent><Down> :res -5<CR>
 nnoremap <C-W>z <C-W>\| <C-W>_<CR>
 
 "Leader bindings
-let mapleader =' '
+let mapleader="\<space>"
 
-noremap <silent><Leader>qq :qa!<CR>
+noremap <silent><Leader>qq :confirm :qa<CR>
 noremap <silent><Leader>Q :q!<CR>
 nnoremap <silent><leader>q :bp <BAR> bd #<CR>
 nnoremap <Leader>w :w!<CR>
@@ -104,8 +104,8 @@ vnoremap <Leader>. :call NERDComment(0, "toggle")<CR>
 nnoremap <Leader>. :call NERDComment(0, "toggle")<CR>
 
 " increment number
-map <C-n> :NERDTreeToggle<CR>
-map <C-t> :Tagbar<CR>
+map <C-n> :TagbarClose<CR>\| :NERDTreeToggle<CR>
+map <C-t> :NERDTreeClose<CR>\| :TagbarToggle<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-f> :GFiles<CR>
 nnoremap <C-m> :History<CR>
@@ -135,6 +135,8 @@ inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
 " #3 VARIABLES, PLUGINS & FUNCTIONS
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDTreeWinPos="right"
+
 let g:UltiSnipsExpandTrigger="<S-Tab>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-k>"
