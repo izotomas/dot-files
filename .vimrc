@@ -5,14 +5,14 @@
 call plug#begin('~/.vim/plugged')
 
 "navigation & searching
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeClose'] }
-Plug 'vim-scripts/Tagbar', { 'on': ['TagbarToggle', 'TagbarClose'] }
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'vim-scripts/Tagbar', { 'on': 'TagbarToggle' }
 Plug 'junegunn/fzf',  { 'dir': '~/.fzf',  'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
 Plug 'tweekmonster/fzf-filemru'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'vim-scripts/Tabmerge', { 'on': 'Tabmerge' }
-Plug 'shojzw/vim-tags'
+Plug 'szw/vim-tags'
 Plug 'kana/vim-arpeggio'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'easymotion/vim-easymotion'
@@ -105,8 +105,8 @@ vnoremap <Leader>. :call NERDComment(0, "toggle")<CR>
 nnoremap <Leader>. :call NERDComment(0, "toggle")<CR>
 
 " increment number
-nnoremap <C-n> :TagbarClose<CR>\| :NERDTreeToggle<CR>
-nnoremap <C-t> :NERDTreeClose<CR>\| :TagbarToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-t> :TagbarToggle<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-f> :GFiles<CR>
 nnoremap <C-m> :History<CR>
@@ -153,9 +153,10 @@ let g:actnum_exclude =
 if has('nvim')
     let g:deoplete#enable_at_startup = 1
     set termguicolors
-    let g:python_host_prog = '/usr/local/Caskroom/miniconda/base/bin/python'
     let g:python3_host_prog = '/usr/local/Caskroom/miniconda/base/bin/python3'
+    let g:python_host_prog = '/usr/local/Caskroom/miniconda/base/bin/python'
 else
+    let g:deoplete#enable_at_startup = 0
     set ttyfast
     set ttymouse=xterm2
     set t_Co=256
@@ -167,6 +168,7 @@ endif
 syntax on
 filetype plugin indent on
 
+set shell=/usr/local/bin/fish
 set clipboard=unnamed                   " clipboard from system
 set foldmethod=syntax                   " enable methods folding
 set foldlevel=99

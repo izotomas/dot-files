@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 #############################################################
 #	PATHS, ALIASES & MISC
 #############################################################
@@ -67,7 +74,7 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "uvaes/fzf-marks"
-zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
+zplug "romkatv/powerlevel10k", as:theme, depth:1
 zplug "robbyrussell/oh-my-zsh/plugins/docker"
 
 # oh-my-zsh library
@@ -167,30 +174,6 @@ fzf-git-aliases() {
     eval $(alias | grep git | fzf-tmux -d 15 | grep -Eoh '^\w+')
 }
 zle -N fzf-git-aliases
-############################################################
-#       POWERLINE
-############################################################
-POWERLEVEL9K_MODE=nerdfont-fontconfig
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator context anaconda dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vi_mode time)
-POWERLEVEL9K_CONTEXT_TEMPLATE="$(whoami)"
-POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='white'
-POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='green'
-POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='yellow'
-POWERLEVEL9K_TIME_FORMAT='%D{%H:%M}'
-POWERLEVEL9K_VCS_GIT_ICON=''
-POWERLEVEL9K_VCS_GIT_GITHUB_ICON=''
-
-# directory max path lenght
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
-POWERLEVEL9K_SHORTEN_DELIMITER=''
-POWERLEVEL9K_SHORTEN_STRATEGY='truncate_from_right'
-
-# multiline prompt
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%F{%(?.2.196)} $%f '
-
 #############################################################
 #	TEST
 #############################################################
@@ -211,3 +194,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
