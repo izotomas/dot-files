@@ -152,7 +152,9 @@ let g:actnum_exclude =
 " vim/neovim specific
 if has('nvim')
     let g:deoplete#enable_at_startup = 1
-    set termguicolors
+    if $TERM_PROGRAM != 'Apple_Terminal'
+        set termguicolors
+    endif
     let g:python3_host_prog = '/usr/local/Caskroom/miniconda/base/bin/python3'
     let g:python_host_prog = '/usr/local/Caskroom/miniconda/base/bin/python'
 else
