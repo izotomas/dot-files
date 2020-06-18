@@ -124,7 +124,7 @@ Arpeggio nnoremap vl :VimuxRunLastCommand<CR>
 
 "MISC bindings
 nnoremap <C-i> <C-a>
-nnoremap // :set hlsearch! hlsearch?<cr>
+nnoremap <leader>/ :set hlsearch! hlsearch?<cr>
 nnoremap <silent>~~ :set invpaste paste?<CR>
 nnoremap <silent><Leader>n :set relativenumber? norelativenumber!<CR>
 "python static syntax check
