@@ -95,8 +95,8 @@ nnoremap <C-W>z <C-W>\| <C-W>_<CR>
 let mapleader="\<space>"
 
 noremap <silent><Leader>qq :confirm :qa<CR>
-noremap <silent><Leader>Q :q!<CR>
-nnoremap <silent><leader>q :bp <BAR> bd #<CR>
+noremap <silent><Leader>qs :q!<CR>
+nnoremap <silent><leader>qb :bp <BAR> bd #<CR>
 nnoremap <Leader>w :w!<CR>
 nnoremap <Leader>r :source ~/.vimrc<CR>
 nnoremap <Leader>R :source ~/.vimrc<CR>:PlugInstall<CR>
