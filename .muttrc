@@ -1,0 +1,107 @@
+#############################
+#         ACCOUNTS          #
+#############################
+# izo.sk
+set imap_user = "tomas@izo.sk"
+set imap_pass = `security find-internet-password -a "tomas@izo.sk" -s "http://mail.izo.sk" -w`
+
+set smtp_url = "smtps://tomas@izo.sk@smtp.websupport.sk:465/"
+set smtp_pass = `security find-internet-password -a "tomas@izo.sk" -s "http://mail.izo.sk" -w`
+
+set from = "tomas@izo.sk"
+set realname = "Tomas Izo"
+
+set folder = "imaps://imap.websupport.sk/"
+set spoolfile = "+INBOX"
+set trash = "+INBOX/Trash"
+set record = "+INBOX/Sent"
+set postponed = "+INBOX/Drafts"
+
+mailboxes =INBOX =INBOX/Sent =INBOX/Drafts =INBOX/Trash
+
+#mailboxes $spoolfile $postponed $record $trash
+
+#############################
+#          CONFIG           #
+#############################
+# paths
+set mailcap_path = ~/.config/mutt/.mailcap
+set header_cache = ~/.mutt/cache/headers
+set message_cachedir = ~/.mutt/cache/bodies
+set certificate_file = ~/.mutt/ca-certs.cer
+set tmpdir = ~/.mutt/tmp
+
+# Set preffered view modes
+auto_view text/html text/calendar application/ics # view html automatically
+alternative_order text/html text/plain text/enriched text/*
+
+# SIDEBAR
+# general
+set sidebar_folder_indent
+set sidebar_width = 25
+
+# mailboxes
+# Mailboxes to show in the sidebar.
+#mailboxes =ALL-INBOXES
+#mailboxes =INBOX
+#mailboxes ="==================="
+#mailboxes =izo
+#mailboxes =/sent =izo/drafts =izo/junk =izo/trash
+
+# status bar, date format, finding stuff etc.
+set status_chars = " *%A"
+set status_format = "[ Folder: %f ] [%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]%>─%?p?( %p postponed )?"
+set date_format = "%d.%m.%Y %H:%M"
+set index_format = "[%Z] %?X?A&-? %D  %-20.20F  %s"
+set sort = threads
+set sort_aux = reverse-last-date-received
+set uncollapse_jump
+set sort_re
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+set send_charset = "utf-8:iso-8859-1:us-ascii"
+set charset = "utf-8"
+
+# Pager View Options
+set pager_index_lines = 10
+set pager_context = 3
+set pager_stop
+set menu_scroll
+set tilde
+
+# colors
+source ~/.config/mutt/colors/gruvbox-256.muttrc
+source ~/.config/mutt/powerline.muttrc
+
+#############################
+#         BINDINGS          #
+#############################
+# some sane vim-like keybindings
+bind index,pager k previous-entry
+bind index,pager j next-entry
+bind index,pager g noop
+bind index,pager \Cu half-up
+bind index,pager \Cd half-down
+bind pager gg top
+bind index gg first-entry
+bind pager G bottom
+bind index G last-entry
+
+# Sidebar Navigation
+bind index,pager <down> sidebar-next
+bind index,pager <up> sidebar-prev
+bind index,pager <right> sidebar-open
+bind index,pager \Cn sidebar-toggle-visible
+
+# index and pager shortcuts
+bind index,pager @ compose-to-sender
+bind index,pager R group-reply
+bind index <tab> sync-mailbox
+bind index <space> collapse-thread
+
+# Drafts
+bind compose P postpone-message
+bind index p recall-message
+
+# finding stuff
+bind editor <tab> complete-query
