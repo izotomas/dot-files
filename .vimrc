@@ -223,13 +223,8 @@ if has('langmap') && exists('+langnoremap')
   set langnoremap
 endif
 
-
-" fzf-vim
-"if exists('$TMUX')
-  "let g:fzf_layout = { 'tmux': '-p60%,60%' }
-"else
-  "let g:fzf_layout = { 'down': '~25%' }
-"endif
+let $FZF_DEFAULT_OPTS='--layout=reverse'
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 if has('nvim') && !exists('g:fzf_layout')
   autocmd! FileType fzf
