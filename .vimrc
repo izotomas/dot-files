@@ -27,6 +27,8 @@ Plug 'tpope/vim-repeat'
 Plug 'cespare/vim-toml'
 Plug 'edkolev/tmuxline.vim'
 Plug 'auwsmit/vim-active-numbers'
+Plug 'ncm2/float-preview.nvim'
+Plug 'voldikss/vim-floaterm'
 
 "text completion & editing
 Plug 'dag/vim-fish', {'for': 'fish'}
@@ -41,6 +43,7 @@ Plug 'vim-scripts/indentpython.vim', { 'for': 'python' }
 Plug 'alfredodeza/khuno.vim', { 'for': 'python' }
 Plug 'darfink/vim-plist', {'for': 'plist'}
 Plug 'berdandy/AnsiEsc.vim'
+Plug 'chunkhang/vim-mbsync'
 Plug 'vim-scripts/auto-pairs'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
@@ -51,10 +54,6 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'benmills/vimux'
 Plug 'tmhedberg/SimpylFold'
-
-" my work
-Plug 'izotomas/lazygit-vim'
-
 
 call plug#end()
 
@@ -112,7 +111,7 @@ nnoremap <C-f> :GFiles<CR>
 nnoremap <C-m> :History<CR>
 nnoremap <C-b> :Buffers<CR>
 nnoremap <C-c> :Commits<CR>
-nnoremap <C-g> :Lazygit<CR>
+nnoremap <C-g> :FloatermNew lazygit<CR>
 
 noremap <silent> <C-u> :call smooth_scroll#up(&scroll,  10,  2)<CR>
 noremap <silent> <C-d> :call smooth_scroll#down(&scroll,  10,  2)<CR>
@@ -131,7 +130,9 @@ nnoremap <silent><Leader>n :set relativenumber? norelativenumber!<CR>
 autocmd FileType python nmap <silent><Leader>x <Esc>:Khuno show<CR>
 " deoplete navigate through completions
 inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
-" easymotion
+inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr><C-g> deoplete#undo_completion()
+
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-sn)
 map  n <Plug>(easymotion-next)
@@ -165,7 +166,9 @@ else
     set nocompatible
     filetype off
 endif
-
+" autocompletion
+set completeopt-=preview
+let g:float_preview#docked = 0
 " syntax enable
 syntax on
 filetype plugin indent on
