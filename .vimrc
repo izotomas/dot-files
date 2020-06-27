@@ -130,7 +130,8 @@ nnoremap <silent><Leader>n :set relativenumber? norelativenumber!<CR>
 autocmd FileType python nmap <silent><Leader>x <Esc>:Khuno show<CR>
 " deoplete navigate through completions
 inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+noremap <silent><expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr><C-g> deoplete#undo_completion()
 
 map  / <Plug>(easymotion-sn)
