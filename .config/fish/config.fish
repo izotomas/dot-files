@@ -106,3 +106,9 @@ eval /usr/local/Caskroom/miniconda/base/bin/conda "shell.fish" "hook" $argv | so
 # HACK: for some reson conda was not activating propertly
 conda deactivate
 conda activate
+
+
+#############################################################
+#	DIRENV
+#############################################################
+direnv hook fish | source
