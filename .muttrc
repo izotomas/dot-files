@@ -1,52 +1,78 @@
 #############################
-#         ACCOUNTS          #
-#############################
-# izo.sk
-set imap_user = "tomas@izo.sk"
-set imap_pass = `security find-internet-password -a "tomas@izo.sk" -s "http://mail.izo.sk" -w`
-
-set smtp_url = "smtps://tomas@izo.sk@smtp.websupport.sk:465/"
-set smtp_pass = `security find-internet-password -a "tomas@izo.sk" -s "http://mail.izo.sk" -w`
-
-set from = "tomas@izo.sk"
-set realname = "Tomas Izo"
-
-set folder = "imaps://imap.websupport.sk/"
-set spoolfile = "+INBOX"
-set trash = "+INBOX/Trash"
-set record = "+INBOX/Sent"
-set postponed = "+INBOX/Drafts"
-
-mailboxes =INBOX =INBOX/Sent =INBOX/Drafts =INBOX/Trash
-
-#mailboxes $spoolfile $postponed $record $trash
-
-#############################
-#          CONFIG           #
+#         GENERAL           #
 #############################
 # paths
-set mailcap_path = ~/.config/mutt/.mailcap
+set folder = ~/.mutt/mail/
 set header_cache = ~/.mutt/cache/headers
 set message_cachedir = ~/.mutt/cache/bodies
 set certificate_file = ~/.mutt/ca-certs.cer
 set tmpdir = ~/.mutt/tmp
 
+# mailcap
+set mailcap_path = ~/.config/mutt/.mailcap
+
 # Set preffered view modes
 auto_view text/html text/calendar application/ics # view html automatically
 alternative_order text/html text/plain text/enriched text/*
 
+# basic options
+set wait_key = no
+set mbox_type = Maildir
+set timeout = 3
+set quit
+
+# compose View Options
+set envelope_from                    # which from?
+set edit_headers                     # show headers when composing
+set fast_reply                       # skip to compose when replying
+set askcc                            # ask for CC:
+set fcc_attach                       # save attachments with the body
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set attribution = "On %d, %n wrote:" # format of quoting header
+set reply_to                         # reply to Reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote                    # include message in forwards
+set text_flowed
+unset sig_dashes                     # no dashes before sig
+unset mime_forward                   # forward attachments as part of body
+
+# email headers and attachments
+ignore *
+unignore from: to: cc: bcc: date: subject:
+unhdr_order *
+hdr_order from: to: cc: bcc: date: subject:
+alternative_order text/plain text/enriched text/html
+auto_view text/html
+
 # SIDEBAR
-# general
+# sidebar patch config
+set sidebar_short_path
 set sidebar_folder_indent
 set sidebar_width = 25
+set sidebar_divider_char = ' | '
+set sidebar_indent_string = '  ''
+set sidebar_format = "%B %* [%?N?%N / ?%S]"
 
-# mailboxes
 # Mailboxes to show in the sidebar.
-#mailboxes =ALL-INBOXES
-#mailboxes =INBOX
-#mailboxes ="==================="
-#mailboxes =izo
-#mailboxes =/sent =izo/drafts =izo/junk =izo/trash
+#############################
+#         ACCOUNTS          #
+#############################
+set realname = "Tomas Izo"
+
+# default mailbox
+source ~/.config/mutt/profile.izo
+
+# folter hooks
+folder-hook 'izo/*' source ~/.config/mutt/profile.izo
+mailboxes =izo/INBOX =izo/INBOX/Sent =izo/INBOX/Trash
+
+#############################
+#          STYLE            #
+#############################
+set sidebar_folder_indent
+set sidebar_width = 25
 
 # status bar, date format, finding stuff etc.
 set status_chars = " *%A"
@@ -90,7 +116,6 @@ bind index G last-entry
 # Sidebar Navigation
 bind index,pager <down> sidebar-next
 bind index,pager <up> sidebar-prev
-bind index,pager <right> sidebar-open
 bind index,pager \Cn sidebar-toggle-visible
 
 # index and pager shortcuts

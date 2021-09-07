@@ -1,5 +1,6 @@
 prompt_order = [
     "conda",
+    "python",
     "directory",
     "git_branch",
     "git_status",
@@ -44,3 +45,5 @@ disabled = false
 [package]
 disabled = true
 
+[python]
+symbol=""
