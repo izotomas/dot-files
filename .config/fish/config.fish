@@ -2,7 +2,7 @@
 #	PATHS, ALIASES & MISC
 #############################################################
 # conda, brew & aws binaries before the system ones
-set -gx PATH /usr/local/bin /usr/local/sbin /usr/local/opt/ruby/bin /opt/local/bin /opt/local/sbin $HOME/.local/bin $PATH
+set -gx PATH /usr/local/bin /usr/local/sbin /usr/local/opt/ruby/bin /opt/local/bin /opt/local/sbin /Applications/MATLAB_R2021a.app/bin $HOME/.local/bin $HOME/.cargo/bin $PATH
 
 # alias tmux for proper coloring
 set -x TERM 'screen-256color'

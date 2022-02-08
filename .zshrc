@@ -93,7 +93,7 @@ zplug "lib/directories", from:oh-my-zsh, defer:0
 zplug "lib/grep", from:oh-my-zsh, defer:0
 zplug "lib/key-bindings", from:oh-my-zsh, defer:0
 zplug "lib/misc", from:oh-my-zsh, defer:0
-zplug "lib/termsupport", from:oh-my-zsh, defer:0
+#zplug "lib/termsupport", from:oh-my-zsh, if:"[ $TERM_PROGRAM != 'Apple_Terminal' ]"
 
 # Install packages that have not been installed yet
 if ! zplug check --verbose; then
@@ -196,3 +196,4 @@ unset __conda_setup
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+. "$HOME/.cargo/env"
