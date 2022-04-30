@@ -30,6 +30,12 @@ set fish_greeting
 # setup fish vim bindings
 fish_vi_key_bindings
 
+# DFDS Stuff
+# Set 'saml' as the default AWS profile
+set AWS_PROFILE 'saml'
+# Set the Hellman config file as the default for kubectl
+set KUBECONFIG '~/.kube/hellman-saml.config'
+
 alias vim='nvim'
 alias mux='tmuxinator'
 #############################################################
