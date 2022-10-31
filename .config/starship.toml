@@ -1,0 +1,45 @@
+format = """
+$conda\
+$python\
+$directory\
+$git_branch\
+$git_status\
+$line_break\
+$character\
+"""
+
+add_newline = false
+
+[directory]
+truncation_length = 8
+truncate_to_repo = true
+style = "bold fg:#83a598"
+
+[git_branch]
+style = "bold #98971a"
+symbol = " "
+
+[git_status]
+stashed = " "
+style = "bold #d79921"
+
+[aws]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[dotnet]
+disabled = true
+
+[conda]
+symbol = "  "
+disabled = false
+ignore_base = false
+format = "[$symbol$environment]($style) "
+
+[package]
+disabled = true
+
+[python]
+symbol=""

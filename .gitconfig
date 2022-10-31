@@ -1,0 +1,12 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Tomas Izo
+	email = toizo@dfds.com
+
+[url "git@github.com:"]
+	insteadOf = git://github.com/
+	insteadOf = https://github.com/
+
+[alias]
+    squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
+
