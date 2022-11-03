@@ -40,6 +40,7 @@ alias snyk='/Users/tomasizo/Library/Application\ Support/JetBrains/Rider2022.2/p
 alias vim='nvim'
 alias mux='tmuxinator'
 abbr -a -g k9sn 'k9s -n $K8S_NAMESPACE'
+abbr -a -g awsl 'saml2aws login --force --skip-prompt'
 
 #############################################################
 #	PLUGIN MANAGER
