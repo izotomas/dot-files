@@ -43,7 +43,7 @@ abbr -a -g k9sn 'k9s -n $K8S_NAMESPACE'
 abbr -a -g awsl 'saml2aws login --force --skip-prompt'
 
 #############################################################
-#	PLUGIN MANAGER
+#	PLUGINS
 #############################################################
 if not functions -q fundle; eval (curl -sfL https://git.io/fundle-install); end
 
@@ -55,7 +55,7 @@ fundle plugin 'kevinhwang91/fzf-tmux-script'
 fundle init
 
 #############################################################
-#	COLORS
+#	COLORS & STYLE
 #############################################################
 set -g fish_color_command b8bb26
 set -g fish_color_param ebdbb2
@@ -77,63 +77,6 @@ function start_tmux
             tmux -2 attach; or tmux -2 new-session
         end
     end
-end
-
-function azenv --argument-names ci_yml
-    # use default ci.yml
-    if test -z "$ci_yml"
-        set ci_yml "azure-pipelines.yml"
-    end
-
-    # fail if missing
-    if test ! -f "$ci_yml"
-        return 1
-    end
-
-    # prep output file
-    set DUMP_FILE ".envrc.$K8S_ENV"
-    rm -f $DUMP_FILE
-    touch $DUMP_FILE
-
-    # extract variable groups from az-pipeline.yml
-    set GROUPS $(cat $ci_yml | yq ".stages | .[] | select(.stage | match(\"(?i).*$K8S_ENV\")) | .variables.[].group")
-
-    # extract variables to output file
-    echo "extracting variables to $DUMP_FILE"
-
-    for GROUP_NAME in $GROUPS
-        set VARS $(az pipelines variable-group list --group-name "$GROUP_NAME")
-        echo $VARS | jq -r '.[] .variables | to_entries | map("export \(.key)=\(.value.value|@sh)")|.[]' >> $DUMP_FILE
-    end
-end
-
-function awsenv --argument-names env
-    # use prod as default env
-    if test -z "$env"
-        set env "prod"
-    end
-
-    set -l AWS_ACCOUNT $(aws sts get-caller-identity | jq -r '.Account')
-    set -l K8S_NAMESPACE $(cat ./k8s/deployment.yml | yq '.metadata.namespace')
-
-    # fail if not logged in
-    if test -z "$AWS_ACCOUNT"
-        echo "Failed to extract aws account. make sure you are logged in and try again (saml2aws login)"
-        return 1
-    end
-
-    # setup envrc for direnv
-    echo "creating .envrc file..."
-    printf "export SAML2AWS_ROLE=\"arn:aws:iam::$AWS_ACCOUNT:role/Capability\"
-export K8S_NAMESPACE=\"$K8S_NAMESPACE\"
-export K8S_ENV=\"$env\"
-ENVRC_AZ=\".envrc.\$K8S_ENV\"
-if test -f \$ENVRC_AZ; then
-    source \$ENVRC_AZ
-fi" > .envrc
-
-    # allow .envrc
-    direnv allow
 end
 
 direnv hook fish | source
