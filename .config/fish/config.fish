@@ -32,7 +32,7 @@ fish_vi_key_bindings
 
 # DFDS Stuff
 # Set 'saml' as the default AWS profile
-set -x  AWS_PROFILE 'saml'
+set -x AWS_PROFILE 'saml'
 # Set the Hellman config file as the default for kubectl
 set -x KUBECONFIG ~/.kube/hellman-saml.config
 
@@ -104,6 +104,30 @@ function azenv --argument-names ci_yml
         set VARS $(az pipelines variable-group list --group-name "$GROUP_NAME")
         echo $VARS | jq -r '.[] .variables | to_entries | map("export \(.key)=\(.value.value|@sh)")|.[]' >> $DUMP_FILE
     end
+end
+
+function awsenv --argument-names env
+    # use prod as default env
+    if test -z "$env"
+        set env "prod"
+    end
+
+    set -l AWS_ACCOUNT $(aws sts get-caller-identity | jq -r '.Account')
+
+    # fail if not logged in
+    if test -z "$AWS_ACCOUNT"
+        "Failed to extract aws account. make sure you are logged in and try again (saml2aws login)"
+        return 1
+    end
+
+    # setup envrc for direnv
+    printf "export SAML2AWS_ROLE=\"arn:aws:iam::$AWS_ACCOUNT:role/Capability\"
+export K8S_NAMESPACE=\"\$(cat ./k8s/deployment.yml | yq '.metadata.namespace')\"
+export K8S_ENV=\"$env\"
+ENVRC_AZ=\".envrc.\$K8S_ENV\"
+if test -f \$ENVRC_AZ; then
+    source \$ENVRC_AZ
+fi" > .envrc
 end
 
 direnv hook fish | source
