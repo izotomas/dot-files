@@ -1,5 +1,5 @@
 #############################################################
-#	PATHS, ALIASES & MISC
+#	PATHS, ALIASES & ABBR
 #############################################################
 # conda, brew & aws binaries before the system ones
 set -gx PATH /usr/local/share/dotnet /opt/homebrew/bin /usr/local/bin /usr/local/sbin /usr/local/opt/ruby/bin /opt/local/bin /opt/local/sbin $HOME/.local/bin $HOME/.cargo/bin $HOME/.dotnet/tools $PATH
