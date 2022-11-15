@@ -39,6 +39,7 @@ Plug 'ponko2/deoplete-fish', {'for': 'fish'}
 Plug 'leafgarland/typescript-vim'
 Plug 'dense-analysis/ale'
 Plug 'jelera/vim-javascript-syntax',  {'for': 'javascript'}
+Plug 'jvirtanen/vim-hcl', {'for': 'hcl'}
 Plug 'vim-scripts/indentpython.vim', { 'for': 'python' }
 Plug 'alfredodeza/khuno.vim', { 'for': 'python' }
 Plug 'darfink/vim-plist', {'for': 'plist'}
