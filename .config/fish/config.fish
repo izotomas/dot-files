@@ -16,6 +16,9 @@ set -x LANG 'en_US.UTF-8'
 # tee-clc java11 fix
 set -x TF_NOTELEMETRY 'TRUE'
 
+# colima
+set -gx DOCKER_HOST "unix:///Users/tomasizo/.colima/default/docker.sock"
+
 # enable fzf-tmux
 set -U FZF_TMUX
 set -U FZF_TMUX_OPTS '-p 80%'
