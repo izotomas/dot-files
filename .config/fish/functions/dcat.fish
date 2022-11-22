@@ -5,17 +5,21 @@ function dcat
         return 1
     end
 
-    if test -n "$_flag_c"
-        string match -e -r "^\d+\$" $_flag_c >/dev/null
+    set -l topic $_flag_t
+    set -l count $_flag_c
+    set -l list_topics $_flag_l
+
+    if test -n "$count"
+        string match -e -r "^\d+\$" $count >/dev/null
         if test $status -eq 1
             echo "count must be an integer"
             return 1
         end
+    else
+        # default message count
+        set count "100"
     end
 
-    set -l topic $_flag_t
-    set -l count $_flag_c
-    set -l list_topics $_flag_l
 
     # DAFDA CLUSTER CREDENTIALS
     set -l broker "pkc-e8wrm.eu-central-1.aws.confluent.cloud:9092"
