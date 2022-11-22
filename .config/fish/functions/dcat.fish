@@ -1,7 +1,16 @@
 function dcat
     argparse -x 'l,t' 't/topic=' 'c/count=' 'l/list-topics' -- $argv
     if test $status -eq 1
+        echo "error parsing arguments"
         return 1
+    end
+
+    if test -n "$_flag_c"
+        string match -e -r "^\d+\$" $_flag_c >/dev/null
+        if test $status -eq 1
+            echo "count must be an integer"
+            return 1
+        end
     end
 
     set -l topic $_flag_t
