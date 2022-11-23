@@ -45,6 +45,9 @@ alias mux='tmuxinator'
 abbr -a -g k9sn 'k9s -n $K8S_NAMESPACE'
 abbr -a -g awsl 'saml2aws login --force --skip-prompt'
 
+bind \cf fzf-rga
+bind -M insert \cf fzf-rga
+
 #############################################################
 #	PLUGINS
 #############################################################
