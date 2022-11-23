@@ -1,5 +1,5 @@
 function dcat
-    argparse -x 'l,t' 't/topic=' 'c/count=' 'l/list-topics' -- $argv
+    argparse -x 'l,t' -x 'l,c' 't/topic=' 'c/count=' 'l/list-topics' -- $argv
     if test $status -eq 1
         echo "error parsing arguments"
         return 1
@@ -29,7 +29,7 @@ function dcat
     if test -n "$list_topics"
         kcat -C -b "$broker" -X security.protocol=SASL_SSL -X sasl.mechanisms=PLAIN -X sasl.username="$username" -X sasl.password="$password" -L | grep "topic" | sed -E "s/.*\"(.*)\".*/\\1/" 2>/dev/null
     else
-        kcat -C -b "$broker" -X security.protocol=SASL_SSL -X sasl.mechanisms=PLAIN -X sasl.username="$username" -X sasl.password="$password" -t "$topic" -o-$count -c$count | jq --slurp '.' | fx 2>/dev/null
+        kcat -C -b "$broker" -X security.protocol=SASL_SSL -X sasl.mechanisms=PLAIN -X sasl.username="$username" -X sasl.password="$password" -t "$topic" -o-$count -c$count | jq --slurp '.' 2>/dev/null
     end
 
 end
