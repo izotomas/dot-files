@@ -1,5 +1,4 @@
-# searches for string in files
-function fzf-rga
+function fzf-rga --description 'Searches for text in files'
     set RG_PREFIX 'rga --files-with-matches --no-ignore-vcs --hidden -g \'!.git/\''
     if test (count $argv) -gt 1
         set RG_PREFIX "$RG_PREFIX $argv[1..-2]"
