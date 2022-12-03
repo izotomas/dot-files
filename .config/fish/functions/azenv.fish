@@ -24,4 +24,7 @@ function azenv --argument-names ci_yml
         set VARS $(az pipelines variable-group list --group-name "$GROUP_NAME")
         echo $VARS | jq -r '.[] .variables | to_entries | map("export \(.key)=\(.value.value|@sh)")|.[]' >> $DUMP_FILE
     end
+
+    # load variables to environment
+    direnv allow
 end
