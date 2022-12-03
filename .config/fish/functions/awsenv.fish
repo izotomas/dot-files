@@ -5,7 +5,7 @@ function awsenv --argument-names env
     end
 
     set -l AWS_ACCOUNT $(aws sts get-caller-identity | jq -r '.Account')
-    set -l K8S_NAMESPACE $(cat ./k8s/deployment.yml | yq '.metadata.namespace')
+    set -l K8S_NAMESPACE $(aws iam list-account-aliases | jq -r '.AccountAliases[0]' | sed 's/dfds-//g')
 
     # fail if not logged in
     if test -z "$AWS_ACCOUNT"
