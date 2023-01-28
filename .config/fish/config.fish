@@ -19,6 +19,7 @@ set -x TF_NOTELEMETRY 'TRUE'
 # colima
 set -gx DOCKER_HOST "unix:///Users/tomasizo/.colima/default/docker.sock"
 
+
 # enable fzf-tmux
 set -U FZF_TMUX
 set -U FZF_TMUX_OPTS '-p 80%'
@@ -38,6 +39,8 @@ fish_vi_key_bindings
 set -x AWS_PROFILE 'saml'
 # Set the Hellman config file as the default for kubectl
 set -x KUBECONFIG ~/.kube/hellman-saml.config
+# az cli token
+set -x AZURE_DEVOPS_EXT_PAT $(security find-generic-password -s 'AZURE_DEVOPS_PAT' -w)
 
 alias snyk='/Users/tomasizo/Library/Application\ Support/JetBrains/Rider2022.2/plugins/snyk-intellij-plugin/snyk-macos'
 alias vim='nvim'
