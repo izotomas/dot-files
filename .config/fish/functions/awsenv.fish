@@ -9,13 +9,14 @@ function awsenv --argument-names env
 
     # fail if not logged in
     if test -z "$AWS_ACCOUNT"
-        echo "Failed to extract aws account. make sure you are logged in and try again (saml2aws login)"
+        echo "Failed to extract aws account. make sure you are logged in and try again (go-aws-sso)"
         return 1
     end
 
     # setup envrc for direnv
     echo "creating .envrc file..."
     printf "export SAML2AWS_ROLE=\"arn:aws:iam::$AWS_ACCOUNT:role/Capability\"
+export AWS_ACCOUNT_ID=\"$AWS_ACCOUNT\"
 export K8S_NAMESPACE=\"$K8S_NAMESPACE\"
 export K8S_ENV=\"$env\"
 ENVRC_AZ=\".envrc.\$K8S_ENV\"
