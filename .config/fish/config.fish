@@ -42,6 +42,10 @@ set -x KUBECONFIG ~/.kube/hellman-saml.config
 # az cli token
 set -x AZURE_DEVOPS_EXT_PAT $(security find-generic-password -s 'AZURE_DEVOPS_PAT' -w)
 
+# aws cli completion
+complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
+
+
 alias snyk='/Users/tomasizo/Library/Application\ Support/JetBrains/Rider2022.2/plugins/snyk-intellij-plugin/snyk-macos'
 alias vim='nvim'
 alias mux='tmuxinator'
