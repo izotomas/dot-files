@@ -37,6 +37,7 @@ fish_vi_key_bindings
 # DFDS Stuff
 # Set 'saml' as the default AWS profile
 set -x AWS_PROFILE 'saml'
+set -x OP_ACCOUNT 'dfds'
 # Set the Hellman config file as the default for kubectl
 set -x KUBECONFIG ~/.kube/hellman-saml.config
 # az cli token
@@ -46,7 +47,6 @@ set -x AZURE_DEVOPS_EXT_PAT $(security find-generic-password -s 'AZURE_DEVOPS_PA
 complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
 
 
-alias snyk='/Users/tomasizo/Library/Application\ Support/JetBrains/Rider2022.2/plugins/snyk-intellij-plugin/snyk-macos'
 alias vim='nvim'
 alias mux='tmuxinator'
 abbr -a -g k9sn 'k9s -n $K8S_NAMESPACE'
