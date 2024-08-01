@@ -55,6 +55,7 @@ abbr -a -g awsl 'go-aws-sso assume --account-id $AWS_ACCOUNT_ID --role-name Capa
 bind \cf fzf-rga
 bind -M insert \cf fzf-rga
 
+
 #############################################################
 #	PLUGINS
 #############################################################
@@ -64,6 +65,7 @@ fundle plugin 'urbainvaes/fzf-marks'
 fundle plugin 'jhillyerd/plugin-git'
 fundle plugin 'edc/bass'
 fundle plugin 'kevinhwang91/fzf-tmux-script'
+fundle plugin 'jorgebucaran/nvm.fish'
 
 fundle init
 
@@ -103,3 +105,12 @@ eval /opt/homebrew/Caskroom/miniconda/base/bin/conda "shell.fish" "hook" $argv |
 # <<< conda initialize <<<
 conda deactivate
 conda activate
+
+#############################################################
+#	NVM
+#############################################################
+function nvm_use_default
+    nvm use
+end
+
+nvm_use_default
