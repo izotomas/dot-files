@@ -50,7 +50,8 @@ complete --command aws --no-files --arguments '(begin; set --local --export COMP
 alias vim='nvim'
 alias mux='tmuxinator'
 abbr -a -g k9sn 'k9s -n $K8S_NAMESPACE'
-abbr -a -g awsl 'go-aws-sso assume --account-id $AWS_ACCOUNT_ID --role-name CapabilityAccess'
+# disable for now, using a function instead
+# abbr -a -g awsl 'go-aws-sso assume --account-id $AWS_ACCOUNT_ID --role-name CapabilityAccess'
 
 bind \cf fzf-rga
 bind -M insert \cf fzf-rga
