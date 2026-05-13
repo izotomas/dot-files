@@ -1,14 +1,32 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Tomas Izo
-	email = toizo@dfds.com
 
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
+
+[url "git@github.com:lunarway"]
+    insteadof = https://github.com/lunarway
 [url "git@github.com:"]
-	insteadOf = git://github.com/
-	insteadOf = https://github.com/
+    insteadOf = https://github.com/
 
 [alias]
     squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
 
 [push]
 	autoSetupRemote = true
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+
+[includeIf "gitdir/i:/Users/tomasizo/lunar/"]
+  path = .gitconfig_lw
+[gpg "ssh"]
+	allowedSignersFile = /Users/tomasizo/.ssh/allowed_signers
+
+[includeIf "gitdir/i:/Users/tomasizo/lunar/"]
+  path = .gitconfig_lw
+[includeIf "gitdir/i:/Users/tomasizo/go/src/github.com/lunarway/"]
+  path = .gitconfig_lw
