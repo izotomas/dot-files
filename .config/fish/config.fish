@@ -2,7 +2,7 @@
 #	PATHS, ALIASES & ABBR
 #############################################################
 # conda, brew & aws binaries before the system ones
-set -gx PATH /usr/local/share/dotnet /opt/homebrew/bin /usr/local/bin /usr/local/sbin /usr/local/opt/ruby/bin /opt/local/bin /opt/local/sbin $HOME/.local/bin $HOME/.cargo/bin $HOME/.dotnet/tools $PATH
+set -gx PATH /usr/local/share/dotnet /opt/homebrew/bin /opt/homebrew/opt/coreutils/libexec/gnubin /usr/local/bin /usr/local/sbin /usr/local/opt/ruby/bin /opt/local/bin /opt/local/sbin $HOME/.local/bin $HOME/.cargo/bin $HOME/.dotnet/tools $PATH
 
 # alias tmux for proper coloring
 set -x TERM 'screen-256color'
@@ -38,10 +38,12 @@ fish_vi_key_bindings
 # Set 'saml' as the default AWS profile
 set -x AWS_PROFILE 'saml'
 set -x OP_ACCOUNT 'dfds'
+set -x KAFKA_OPTS '-Djava.security.manager=allow'
 # Set the Hellman config file as the default for kubectl
 set -x KUBECONFIG ~/.kube/hellman-saml.config
-# az cli token
-set -x AZURE_DEVOPS_EXT_PAT $(security find-generic-password -s 'AZURE_DEVOPS_PAT' -w)
+set -x OPENAI_API_KEY $(security find-generic-password -s 'OPENAI' -w)
+set -x OPENAI_BASE_URL 'https://eu.api.openai.com/v1'
+set -x GOPRIVATE 'github.com/lunarway/*,go.lunarway.com/*'
 
 # aws cli completion
 complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
