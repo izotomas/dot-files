@@ -1,0 +1,11 @@
+# /Users/tomasizo/.config/tmuxinator/lw.yml
+
+name: lw/<%= @args[0] %>
+root: ~/lunar/<%= @args[0] %>
+
+windows:
+  - main:
+      layout: even-horizontal
+      panes:
+        - zsh -c "codex; exec zsh"
+        - zsh -c "lazygit; exec zsh"
