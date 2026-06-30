@@ -99,12 +99,7 @@ end
 
 direnv hook fish | source
 
-#############################################################
-#	CONDA
-#############################################################
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-eval /opt/homebrew/Caskroom/miniconda/base/bin/conda "shell.fish" "hook" $argv | source
-# <<< conda initialize <<<
-conda deactivate
-conda activate
+function conda_load
+  eval /opt/homebrew/Caskroom/miniconda/base/bin/conda "shell.fish" "hook" | source
+end
+
