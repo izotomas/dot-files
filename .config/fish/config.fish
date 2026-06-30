@@ -108,12 +108,3 @@ eval /opt/homebrew/Caskroom/miniconda/base/bin/conda "shell.fish" "hook" $argv |
 # <<< conda initialize <<<
 conda deactivate
 conda activate
-
-#############################################################
-#	NVM
-#############################################################
-function nvm_use_default
-    nvm use
-end
-
-nvm_use_default
