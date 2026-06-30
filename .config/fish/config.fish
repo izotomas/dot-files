@@ -60,19 +60,6 @@ bind -M insert \cf fzf-rga
 
 
 #############################################################
-#	PLUGINS
-#############################################################
-if not functions -q fundle; eval (curl -sfL https://git.io/fundle-install); end
-
-fundle plugin 'urbainvaes/fzf-marks'
-fundle plugin 'jhillyerd/plugin-git'
-fundle plugin 'edc/bass'
-fundle plugin 'kevinhwang91/fzf-tmux-script'
-fundle plugin 'jorgebucaran/nvm.fish'
-
-fundle init
-
-#############################################################
 #	COLORS & STYLE
 #############################################################
 set -g fish_color_command b8bb26
