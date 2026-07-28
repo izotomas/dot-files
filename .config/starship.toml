@@ -1,5 +1,4 @@
 format = """
-$conda\
 $python\
 $directory\
 $git_branch\
@@ -31,12 +30,6 @@ disabled = true
 
 [dotnet]
 disabled = true
-
-[conda]
-symbol = "  "
-disabled = false
-ignore_base = false
-format = "[$symbol$environment]($style) "
 
 [package]
 disabled = true

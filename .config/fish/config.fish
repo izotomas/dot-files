@@ -2,7 +2,7 @@
 #	PATHS, ALIASES & ABBR
 #############################################################
 # conda, brew & aws binaries before the system ones
-set -gx PATH /usr/local/share/dotnet /opt/homebrew/bin /opt/homebrew/opt/coreutils/libexec/gnubin /usr/local/bin /usr/local/sbin /usr/local/opt/ruby/bin /opt/local/bin /opt/local/sbin $HOME/.local/bin $HOME/.cargo/bin $HOME/.dotnet/tools $PATH
+set -gx PATH /usr/local/share/dotnet /opt/homebrew/bin /opt/homebrew/opt/coreutils/libexec/gnubin /usr/local/bin /usr/local/sbin /usr/local/opt/ruby/bin /opt/local/bin /opt/local/sbin $HOME/.local/bin $HOME/.cargo/bin $HOME/.dotnet/tools $HOME/.bun/bin $PATH
 
 # alias tmux for proper coloring
 set -x TERM 'screen-256color'
@@ -15,10 +15,6 @@ set -x LANG 'en_US.UTF-8'
 
 # tee-clc java11 fix
 set -x TF_NOTELEMETRY 'TRUE'
-
-# colima
-set -gx DOCKER_HOST "unix:///Users/tomasizo/.colima/default/docker.sock"
-
 
 # enable fzf-tmux
 set -U FZF_TMUX
@@ -34,14 +30,10 @@ set fish_greeting
 # setup fish vim bindings
 fish_vi_key_bindings
 
-# DFDS Stuff
-# Set 'saml' as the default AWS profile
-set -x AWS_PROFILE 'saml'
-set -x OP_ACCOUNT 'dfds'
-set -x KAFKA_OPTS '-Djava.security.manager=allow'
-# Set the Hellman config file as the default for kubectl
-set -x KUBECONFIG ~/.kube/hellman-saml.config
+set -x KUBECONFIG ~/.zplug/repos/lunarway/lw-zsh/k8s-login/kubeconfig/dev
 set -x OPENAI_API_KEY $(security find-generic-password -s 'OPENAI' -w)
+set -x LINEAR_API_KEY $(security find-generic-password -s 'LINEAR_API_TOKEN' -w)
+set -x LUNAR_HUMIO_PAT $(security find-generic-password -s 'LUNAR_HUMIO_PAT' -w)
 set -x OPENAI_BASE_URL 'https://eu.api.openai.com/v1'
 set -x GOPRIVATE 'github.com/lunarway/*,go.lunarway.com/*'
 
